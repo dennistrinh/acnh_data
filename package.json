@@ -1,0 +1,15 @@
+{
+  "name": "acnh",
+  "version": "1.0.0",
+  "description": "\"Database for insects/fish in Animal Crossing: New Horizons\"",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"Dennis Trinh\"",
+  "license": "ISC"
+}
