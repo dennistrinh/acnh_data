@@ -1,0 +1,10 @@
+<%
+renderImages = function( name) {
+	lower = name.toLowerCase();
+	colon = lower.replace("\'", "");
+	hyphen = colon.replace("-", "");
+	spaces = hyphen.replace(/#| /g , "_");
+	image = spaces.concat('.png');
+	return image;
+}
+%>
