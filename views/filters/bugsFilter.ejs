@@ -34,9 +34,9 @@
       <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
     </form>
   </div>
-  <h1 class="table_headers">New Bugs This Month</h1>
+  <h1 class="table_headers">New Bugs in <%= body_month %></h1>
   <% if (data.length == 0) { %>
-  <h1 class="table_headers">Nothing new in <%= body_month %>!</h1>
+  <h1 class="table_headers">Nothing new this month!</h1>
   <% } else { %>
   <table>
     <tr>
