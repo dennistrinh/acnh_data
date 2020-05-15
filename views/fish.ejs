@@ -14,17 +14,39 @@
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
     </ul>
   </div>
+  <div class="menu_container">
+    <form method="POST">
+      <label for="months" class="month_label">Month</label>
+      <select name="month" class="month_select">
+        <option value="January">January</option>
+	<option value="February">February</option>
+	<option value="March">March</option>
+	<option value="April">April</option>
+	<option value="May">May</option>
+	<option value="June">June</option>
+	<option value="July">July</option>
+	<option value="August">August</option>
+	<option value="September">September</option>
+	<option value="October">October</option>
+	<option value="November">November</option>
+	<option value="December">December</option>
+      </select>
+      <input class="month_submit" type="submit" value="Filter" formaction="/fish">
+    </form>
+  </div>
   <table>
     <tr>
       <th>Name</th>
       <th>Image</th>
+      <th>Location</th>
       <th>Price</th>
     </tr>
-    <%- include("./renderImages") %>
+    <%- include("./functions/renderImages") %>
     <% for (let i = 0; i < data.length; i++) { %>
     <tr>
       <td><%= data[i].name %></td>
       <td><img src="images/fish/<%= renderImages(data[i].name) %>" /></td>
+      <td><%= data[i].location %></td>
       <td><%= data[i].price %></td>
     </tr>
     <% } %>

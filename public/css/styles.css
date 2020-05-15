@@ -52,9 +52,19 @@ li.menu_button:hover {
 a.menu_link {
 	display: block;
 	text-decoration: none;
-	padding 0.25em;
 	color: #000000;
 }
-h3, p{
+
+h3, p, form{
+	text-align: center;
+}
+
+select.month_select, label.month_label, input.month_submit {
+	padding: 0.5em;
+	margin: 0.25em;
+	margin-bottom: 2.5em;
+}
+
+h1.table_headers {
 	text-align: center;
 }
