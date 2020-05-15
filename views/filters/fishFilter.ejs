@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Animal Crossing New Horizons Bugs</title>
+  <title>Animal Crossing New Horizons Fish</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
 </head>
@@ -31,9 +31,13 @@
 	<option value="November">November</option>
 	<option value="December">December</option>
       </select>
-      <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
+      <input class="month_submit" type="submit" value="Filter" formaction="/fish">
     </form>
   </div>
+  <h1 class="table_headers">New Fish This Month</h1>
+  <% if (data.length == 0) { %>
+  <h1 class="table_headers">Nothing new in <%= body_month %></h1>
+  <% } else { %>
   <table>
     <tr>
       <th>Name</th>
@@ -41,15 +45,16 @@
       <th>Location</th>
       <th>Price</th>
     </tr>
-    <%- include("./functions/renderImages") %>
+    <%- include("../functions/renderImages") %>
     <% for (let i = 0; i < data.length; i++) { %>
     <tr>
       <td><%= data[i].name %></td>
-      <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
+      <td><img src="/images/fish/<%= renderImages(data[i].name) %>" /></td>
       <td><%= data[i].location %></td>
       <td><%= data[i].price %></td>
     </tr>
     <% } %>
+  <% } %>
 
   </table>
 </body>

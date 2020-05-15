@@ -34,6 +34,10 @@
       <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
     </form>
   </div>
+  <h1 class="table_headers">New Bugs This Month</h1>
+  <% if (data.length == 0) { %>
+  <h1 class="table_headers">Nothing new in <%= body_month %>!</h1>
+  <% } else { %>
   <table>
     <tr>
       <th>Name</th>
@@ -41,7 +45,7 @@
       <th>Location</th>
       <th>Price</th>
     </tr>
-    <%- include("./functions/renderImages") %>
+    <%- include("../functions/renderImages") %>
     <% for (let i = 0; i < data.length; i++) { %>
     <tr>
       <td><%= data[i].name %></td>
@@ -50,6 +54,7 @@
       <td><%= data[i].price %></td>
     </tr>
     <% } %>
+  <% } %>
 
   </table>
 </body>
