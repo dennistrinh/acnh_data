@@ -39,6 +39,7 @@
       <th>Name</th>
       <th>Image</th>
       <th>Location</th>
+      <th>Time Found</th>
       <th>Price</th>
     </tr>
     <%- include("./functions/renderImages") %>
@@ -47,10 +48,16 @@
       <td><%= data[i].name %></td>
       <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
       <td><%= data[i].location %></td>
+      <% if (data[i].start_time_1 && data[i].start_time_2) { %>
+      <td><%= data[i].start_time_1 %>-<%= data[i].end_time_1 %><br><%= data[i].start_time_2 %>-<%= data[i].end_time_2 %></td>
+      <% } else if (data[i].start_time_1) { %>
+      <td><%= data[i].start_time_1 %>-<%= data[i].end_time_1 %>
+      <% } else { %>
+      <td>All Day</td>
+      <% } %>
       <td><%= data[i].price %></td>
     </tr>
     <% } %>
-
   </table>
 </body>
 </html>

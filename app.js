@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/bugs', async (req, res) => {
-	const sql = 'SELECT name, location, price FROM bugs'
+	const sql = 'SELECT * FROM bugs'
 	let conn;
 	try {
 		conn = await mariadb.pool.getConnection();
@@ -31,7 +31,7 @@ app.get('/bugs', async (req, res) => {
 });
 
 app.post('/bugs', async(req, res) => {
-	const sql = 'SELECT name, location, price FROM bugs WHERE (start_month_1=\"2020';
+	const sql = 'SELECT * FROM bugs WHERE (start_month_1=\"2020';
 	const date = monthToDate(req.body["month"]);
 	const sqlQuery = sql.concat(date, '\" OR start_month_2=\"2020', date, '\")');
 	let conn;
@@ -47,7 +47,7 @@ app.post('/bugs', async(req, res) => {
 });
 
 app.get('/fish', async (req, res) => {
-	const sql = 'SELECT name, location, price FROM fish'
+	const sql = 'SELECT * FROM fish'
 	let conn;
 	try {
 		conn = await mariadb.pool.getConnection();
@@ -61,13 +61,14 @@ app.get('/fish', async (req, res) => {
 });
 
 app.post('/fish', async(req, res) => {
-	const sql = 'SELECT name, location, price FROM fish WHERE (start_month_1=\"2020';
+	const sql = 'SELECT * FROM fish WHERE (start_month_1=\"2020';
 	const date = monthToDate(req.body["month"]);
 	const sqlQuery = sql.concat(date, '\" OR start_month_2=\"2020', date, '\")');
 	let conn;
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sqlQuery);
+		//const btw = 'SELECT name, location, price FROM fish WHERE (start_month_1>=\"2020-09-01\" AND end_month_1<=\"2020-11-30\"';
 		res.render('./filters/fishFilter', {data: rows, body_month: req.body["month"]});
 	} catch(err) {
 		throw err;
