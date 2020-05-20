@@ -5,12 +5,27 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 const mariadb = require('./config.js');
 const port = 9000;
+const https_port = 9001;
 const monthToDate = require('./monthToDate.js');
+const https = require('https');
+const fs = require('fs');
+const options = {
+	key: fs.readFileSync(process.env.KEY_LOC),
+	cert: fs.readFileSync(process.env.CERT_LOC),
+	ca: fs.readFileSync(process.env.CA_LOC)
+};
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+
+app.use(function(req, res, next) {
+	if (!req.secure) {
+		return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
+	}
+	next();
+});
 
 app.get('/', function(req, res) {
 	res.render('index');
@@ -77,6 +92,10 @@ app.post('/fish', async(req, res) => {
 	}
 });
 
-var server = app.listen(port, function() {
+const server = app.listen(port, function() {
 	console.log('Express started on localhost:' + port);
+});
+
+const httpsServer = https.createServer(options, app).listen(https_port, function() {
+	console.log('HTTPS Express started on https://localhost:' + https_port);
 });

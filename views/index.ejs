@@ -15,6 +15,15 @@
     </ul>
   </div>
   <div class="menu_container">
+    <h3>May 19th, 2020: Tables updated with more info</h3>
+    <p>I wonder what happened to my first certificate, but it didn't seem to go through.
+       I reissued a new certificate with Certbot and it seems to be set up correctly.
+       All my HTTP requests now automatically redirect to HTTPS as well. Got the cool
+       little lock next to my domain name. I still need to figure out how to do that
+       second table though.
+    </p>
+  </div>
+  <div class="menu_container">
     <h3>May 18th, 2020: Tables updated with more info</h3>
     <p>Times and shadow sizes are up. HTTPS should also be set up soon once the certificate
        gets validated. I still have to figure out how to get two tables up at the same time.
@@ -26,8 +35,12 @@
     <h3>May 14th, 2020: Images are up. Basic filtering also working.</h3>
     <p>160 images all in. Had to do some formatting with the SQL names to render the images correctly.
        At the moment, it is possible to filter to see which new bugs and fish are catchable in a month.
-       Locations are also in. I need to add a separate table for bugs and fish that continue to spawn
-       in a new month. Times for spawns also need to be added. Table CSS could use some work.
+       Biggest problem today: Converting the user's month input to SQL readable input then passing that
+       to the query. My solution was to create a separate module that translates the user's input then
+       returns a complete SQL statement ready to use for querying. Locations are also in. 
+       I need to add a separate table for bugs and fish that continue to spawn
+       in a new month. Times for spawns also need to be added. Table CSS needs some work (some
+       of the tables resize strangely).
     </p>
   </div>
   <div class="menu_container">
@@ -36,7 +49,7 @@
   </div>
   <div class="menu_container">
     <h3>May 12th, 2020: Got the database connected.</h3>
-    <p>Forgot to add my IP to the inbound rules. Whoops.</p>
+    <p>Forgot to allow public IPs in the inbound rules. Whoops.</p>
   </div>
   <div class="menu_container">
     <h3>May 9th, 2020: Got the EC2 instance set up.</h3>
