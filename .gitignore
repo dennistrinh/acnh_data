@@ -1,4 +1,15 @@
+# Ignoring node modules
 /node_modules
+
+# Ignore docker files
 .docker*
+
+# Ignore nodejs keys/env
 .env
 /keys
+
+# Ignore Jenkins for now
+Jenkin*
+
+# Ignore personal stuff
+dennis*

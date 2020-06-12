@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
 	if (!req.secure) {
 		return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
 	}
@@ -92,10 +92,21 @@ app.post('/fish', async(req, res) => {
 	}
 });
 
-const server = app.listen(port, function() {
+app.get('/dennis', (req, res) => {
+	const loc = process.env.RES_LOC;
+	fs.readFile(loc, (err, data) => {
+		if (err)
+			return;
+		else {
+			res.contentType("application/pdf");
+			res.send(data);
+		}
+	});
+});
+const server = app.listen(port, () => {
 	console.log('Express started on localhost:' + port);
 });
 
-const httpsServer = https.createServer(options, app).listen(https_port, function() {
+const httpsServer = https.createServer(options, app).listen(https_port, () => {
 	console.log('HTTPS Express started on https://localhost:' + https_port);
 });
