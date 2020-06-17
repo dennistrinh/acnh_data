@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config();
 const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
-const monthToDate = require('./monthToDate.js');
+const monthToDate = require('./helpers/monthToDate.js');
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
 	res.render('index');
 });
 
