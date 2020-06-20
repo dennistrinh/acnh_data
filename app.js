@@ -7,6 +7,7 @@ const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
 const monthToDate = require('./helpers/monthToDate.js');
+const simpleTime = require('./helpers/simpleTime.js');
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -37,6 +38,17 @@ app.get('/bugs', async (req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sql);
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i].start_time_1) {
+				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
+				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
+			}
+
+			if (rows[i].start_time_2) {
+				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
+				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
+			}
+		}
 		res.render('bugs', {data: rows});
 	} catch(err) {
 		throw err;
@@ -53,6 +65,17 @@ app.post('/bugs', async(req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sqlQuery);
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i].start_time_1) {
+				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
+				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
+			}
+
+			if (rows[i].start_time_2) {
+				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
+				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
+			}
+		}
 		res.render('./filters/bugsFilter', {data: rows, body_month: req.body["month"]});
 	} catch(err) {
 		throw err;
@@ -67,6 +90,17 @@ app.get('/fish', async (req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sql);
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i].start_time_1) {
+				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
+				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
+			}
+
+			if (rows[i].start_time_2) {
+				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
+				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
+			}
+		}
 		res.render('fish', {data: rows});
 	} catch(err) {
 		throw err;
@@ -83,7 +117,17 @@ app.post('/fish', async(req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sqlQuery);
-		//const btw = 'SELECT name, location, price FROM fish WHERE (start_month_1>=\"2020-09-01\" AND end_month_1<=\"2020-11-30\"';
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i].start_time_1) {
+				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
+				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
+			}
+
+			if (rows[i].start_time_2) {
+				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
+				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
+			}
+		}
 		res.render('./filters/fishFilter', {data: rows, body_month: req.body["month"]});
 	} catch(err) {
 		throw err;

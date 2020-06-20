@@ -15,6 +15,17 @@
     </ul>
   </div>
   <div class="menu_container">
+    <h3>June 19th, 2020: Refactoring</h3>
+    <p> I've been exporting code bits into their own modules
+    	for organization purposes. The API requests code needs
+	a bit of refactoring as well. The times have been
+	"demilitarized" and switched to AM/PM format. It
+	wasn't too bad of a fix. I just had to subtract 12
+	from the database query if the time exceeded 12 and stick
+	a PM in front of it. New filters are coming soon.
+    </p>
+  </div>
+  <div class="menu_container">
     <h3>June 16th, 2020: Unnecessary complexity</h3>
     <p> After doing some experimentation and research with React,
     	I feel like I'm making the application needlessly complicated
