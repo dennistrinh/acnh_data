@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Prep') {
 			steps {
-				sh 'docker rm test'
+				sh 'docker rmi test'
 			}
 		}
 		stage('Build') {
