@@ -8,8 +8,5 @@
 .env
 /keys
 
-# Ignore Jenkins for now
-Jenkin*
-
 # Ignore personal stuff
 dennis*

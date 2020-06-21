@@ -1,12 +1,19 @@
 pipeline {
 	agent {
-		docker { image 'node:latest' }
+		dockerfile {
+			label "docker"
+		}
 	}
 	stages {
-		stage('Test') {
+		stage('Build') {
 			steps {
 				sh 'node --version'
 			}
+		}
+	}
+	post {
+		always {
+			cleanWs()
 		}
 	}
 }
