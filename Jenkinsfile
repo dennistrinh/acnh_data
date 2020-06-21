@@ -1,11 +1,21 @@
 pipeline {
 	agent {
-		dockerfile true
+		label 'docker'
 	}
 	stages {
-		stage('Build') {
+		stage('Prep') {
 			steps {
-				sh 'node --version'
+				sh 'docker rm test'
+			}
+		}
+		stage('Build') {
+			agent {
+				dockerfile {
+					args '-t test'
+				}
+			}
+			steps {
+				sh 'node -v' 
 			}
 		}
 	}
