@@ -6,7 +6,9 @@ pipeline {
 	stages {
 		stage('Prep') {
 			when {
-				params.TEST_EXISTS == "true"
+				expression {
+					params.TEST_EXISTS == "true"
+				}
 			}
 			steps {
 				sh 'docker rmi test'
