@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	stages {
 		stage('Build') {
-			agent {dockerfile}
+			agent { dockerfile true }
 			steps {
 				sh 'node -v' 
 			}
