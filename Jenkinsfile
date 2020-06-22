@@ -1,7 +1,13 @@
 pipeline {
+	parameters {
+		choice(name:TEST_EXISTS, choices: ['true', 'false'])
+	}
 	agent any
 	stages {
 		stage('Prep') {
+			when {
+				params.TEST_EXISTS == "true"
+			}
 			steps {
 				sh 'docker rmi test'
 			}
