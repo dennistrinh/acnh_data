@@ -1,6 +1,6 @@
 pipeline {
 	parameters {
-		choice(name:TEST_EXISTS, choices: ['true', 'false'])
+		choice(name: 'TEST_EXISTS', choices: ['true', 'false'], description: 'Does test image exist?')
 	}
 	agent any
 	stages {
