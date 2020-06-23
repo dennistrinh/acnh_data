@@ -4,6 +4,9 @@
 # Ignore docker files
 .docker*
 
+# Ignore Jenkins
+Jenkin*
+
 # Ignore nodejs keys/env
 .env
 /keys
