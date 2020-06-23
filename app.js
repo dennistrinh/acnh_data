@@ -8,6 +8,7 @@ const port = 9000;
 const https_port = 9001;
 const monthToDate = require('./helpers/monthToDate.js');
 const simpleTime = require('./helpers/simpleTime.js');
+const dateFormater = require('./helpers/dateFormater');
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -28,10 +29,12 @@ app.use((req, res, next) => {
 	next();
 });
 
+// Blog
 app.get('/', (req, res) => {
 	res.render('index');
 });
 
+// Shows all bugs
 app.get('/bugs', async (req, res) => {
 	const sql = 'SELECT * FROM bugs'
 	let conn;
@@ -57,6 +60,8 @@ app.get('/bugs', async (req, res) => {
 	}
 });
 
+// Shows bugs specified to user's input for month
+// TODO: Need to add currently active bugs already in month (not new bugs)
 app.post('/bugs', async(req, res) => {
 	const sql = 'SELECT * FROM bugs WHERE (start_month_1=\"2020';
 	const date = monthToDate(req.body["month"]);
@@ -84,6 +89,7 @@ app.post('/bugs', async(req, res) => {
 	}
 });
 
+// Shows all fish
 app.get('/fish', async (req, res) => {
 	const sql = 'SELECT * FROM fish'
 	let conn;
@@ -109,6 +115,8 @@ app.get('/fish', async (req, res) => {
 	}
 });
 
+// Shows fish that show up in user specified month
+// TODO: See bugs (post)
 app.post('/fish', async(req, res) => {
 	const sql = 'SELECT * FROM fish WHERE (start_month_1=\"2020';
 	const date = monthToDate(req.body["month"]);
@@ -136,7 +144,46 @@ app.post('/fish', async(req, res) => {
 	}
 });
 
-app.get('/dennis', (req, res) => {
+// Shows all active fish for current date/time in UTC
+// TODO: Button for user to update timezone
+app.get('/active', async(req, res) => {
+	const date_now = Date.now();
+	const date_obj = new Date(date_now);
+	const day = dateFormater(date_obj.getDate());
+	const month = dateFormater(date_obj.getMonth() + 1);
+	const year = date_obj.getFullYear();
+	const hours = dateFormater(date_obj.getHours());
+	const mins = dateFormater(date_obj.getMinutes());
+	const secs = dateFormater(date_obj.getSeconds());
+	const date = year + "-" + month + "-" + day;
+	const time = hours + ":" + mins + ":" + secs;
+	const bug = 'SELECT * FROM bugs WHERE ';
+	const fish = 'SELECT * FROM fish WHERE ';
+	const dateQuery = '((CAST(\'' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR (CAST(\'' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL) AND ';
+	const timeQueryA = '((start_time_1 >= CAST(\'' + time + '\' AS TIME) AND CAST(\'' + time + '\' AS TIME) < end_time_1) OR ';
+	const timeQueryB = '(start_time_2 >= CAST(\'' + time + '\' AS TIME) AND CAST(\'' + time + '\' AS TIME) < end_time_2) OR start_time_1 IS NULL)';
+	const bugQuery = bug + dateQuery + timeQueryA + timeQueryB;
+	const fishQuery = fish + dateQuery + timeQueryA + timeQueryB;
+	const sqlQuery = bugQuery + ';' + fishQuery;
+	let conn;
+	try {
+		conn = await mariadb.pool.getConnection();
+		let rows = await conn.query(sqlQuery);
+		res.render('./active', {bugdata: rows[0], fishdata: rows[1]});
+	} catch(err) {
+		throw err;
+	} finally {
+		if (conn) return conn.release();
+	}
+});
+
+// Redirect to github repo
+app.get('/github', () => {
+	res.redirect('https://github.com/dennistrinh/acnh_data');
+});
+
+// Old resume location
+/*app.get('/dennis', (req, res) => {
 	const loc = process.env.RES_LOC;
 	fs.readFile(loc, (err, data) => {
 		if (err)
@@ -146,7 +193,8 @@ app.get('/dennis', (req, res) => {
 			res.send(data);
 		}
 	});
-});
+});*/
+
 const server = app.listen(port, () => {
 	console.log('Express started on localhost:' + port);
 });

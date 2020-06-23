@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Animal Crossing New Horizons Active Bugs & Fish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+<body>
+  <div class="menu_container">
+    <ul class="menu">
+      <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
+      <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
+      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+      <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
+      <li class="menu_button"><a href="./github" class="menu_link" img src="images/octocat.png"></a></li>
+    </ul>
+  </div>
+  <h1 class="table_headers">Bugs Currently Active</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Location</th>
+      <th>Time Found</th>
+      <th>Price</th>
+    </tr>
+    <%- include("./functions/renderImages") %>
+    <% for (let i = 0; i < bugdata.length; i++) { %>
+    <tr>
+      <td><%= bugdata[i].name %></td>
+      <td><img src="/images/bugs/<%= renderImages(bugdata[i].name) %>" /></td>
+      <td><%= bugdata[i].location %></td>
+      <% if (bugdata[i].start_time_1 && bugdata[i].start_time_2) { %>
+      <td><%= bugdata[i].start_time_1 %> - <%= bugdata[i].end_time_1 %><br><%= bugdata[i].start_time_2 %> - <%= bugdata[i].end_time_2 %></td>
+      <% } else if (bugdata[i].start_time_1) { %>
+      <td><%= bugdata[i].start_time_1 %> - <%= bugdata[i].end_time_1 %>
+      <% } else { %>
+      <td>All Day</td>
+      <% } %>
+      <td><%= bugdata[i].price %></td>
+    </tr>
+    <% } %>
+  </table>
+  <h1 class="table_headers">Fish Currently Active</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Location</th>
+      <th>Shadow Size</th>
+      <th>Time Found</th>
+      <th>Price</th>
+    </tr>
+    <%- include("./functions/renderImages") %>
+    <% for (let i = 0; i < fishdata.length; i++) { %>
+    <tr>
+      <td><%= fishdata[i].name %></td>
+      <td><img src="/images/fish/<%= renderImages(fishdata[i].name) %>" /></td>
+      <td><%= fishdata[i].location %></td>
+      <td><%= fishdata[i].shadow_size %></td>
+      <% if (fishdata[i].start_time_1 && fishdata[i].start_time_2) { %>
+      <td><%= fishdata[i].start_time_1 %> - <%= fishdata[i].end_time_1 %><br><%= fishdata[i].start_time_2 %> - <%= fishdata[i].end_time_2 %></td>
+      <% } else if (fishdata[i].start_time_1) { %>
+      <td><%= fishdata[i].start_time_1 %> - <%= fishdata[i].end_time_1 %>
+      <% } else { %>
+      <td>All Day</td>
+      <% } %>
+      <td><%= fishdata[i].price %></td>
+    </tr>
+    <% } %>
+  </table>
+
+</body>
+</html>
