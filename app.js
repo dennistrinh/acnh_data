@@ -178,7 +178,7 @@ app.get('/active', async(req, res) => {
 });
 
 // Redirect to github repo
-app.get('/github', () => {
+app.get('/github', (req, res) => {
 	res.redirect('https://github.com/dennistrinh/acnh_data');
 });
 
