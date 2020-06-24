@@ -66,5 +66,32 @@
     <% } %>
   <% } %>
   </table>
+  <h1 class="table_headers">Reoccuring Bugs (from other months)</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Location</th>
+      <th>Time Found</th>
+      <th>Price</th>
+    </tr>
+    <%- include("../functions/renderImages") %>
+    <% for (let i = 0; i < curr.length; i++) { %>
+    <tr>
+      <td><%= curr[i].name %></td>
+      <td><img src="/images/bugs/<%= renderImages(curr[i].name) %>" /></td>
+      <td><%= curr[i].location %></td>
+      <% if (curr[i].start_time_1 && curr[i].start_time_2) { %>
+      <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %><br><%= curr[i].start_time_2 %> - <%= curr[i].end_time_2 %></td>
+      <% } else if (curr[i].start_time_1) { %>
+      <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %>
+      <% } else { %>
+      <td>All Day</td>
+      <% } %>
+      <td><%= curr[i].price %></td>
+    </tr>
+    <% } %>
+  </table>
+
 </body>
 </html>
