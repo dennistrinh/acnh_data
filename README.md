@@ -9,3 +9,4 @@ A project to test out some features of AWS as well as explore some web technolog
 - See currently active bugs & fish by filtered month
 - Add month attributes to the dataset
 - Fix CSS on certain filtered pages
+- Bug on active page, the time query isn't properly taking in ranges.
