@@ -6,10 +6,9 @@ const dotenv = require('dotenv').config();
 const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
-const monthToDate = require('./helpers/monthToDate.js');
-const simpleTime = require('./helpers/simpleTime.js');
-const dateFormater = require('./helpers/dateFormater');
-const currentDate = require('./helpers/currentDate');
+const monthToDate = require('./helpers/monthToDate.js'); // i.e. Changes January into "2020-01-01"
+const simpleTime = require('./helpers/simpleTime.js'); // Converts 24 hour time to 12 hour time
+const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -43,17 +42,7 @@ app.get('/bugs', async (req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sql);
-		for (let i = 0; i < rows.length; i++) {
-			if (rows[i].start_time_1) {
-				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
-				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
-			}
-
-			if (rows[i].start_time_2) {
-				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
-				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
-			}
-		}
+		simpleTime(rows);
 		res.render('bugs', {data: rows});
 	} catch(err) {
 		throw err;
@@ -79,31 +68,8 @@ app.post('/bugs', async(req, res) => {
 
 		// Remove duplicate entries in the reoccuring fish
 		let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
-
-		// Change 24 hour format to 12 hour format
-		for (let i = 0; i < rows[0].length; i++) {
-			if (rows[0][i].start_time_1) {
-				rows[0][i].start_time_1 = simpleTime(rows[0][i].start_time_1);
-				rows[0][i].end_time_1 = simpleTime(rows[0][i].end_time_1);
-			}
-
-			if (rows[0][i].start_time_2) {
-				rows[0][i].start_time_2 = simpleTime(rows[0][i].start_time_2);
-				rows[0][i].end_time_2 = simpleTime(rows[0][i].end_time_2);
-			}
-		}
-
-		for (let i = 0; i < modify.length; i++) {
-			if (modify[i].start_time_1) {
-				modify[i].start_time_1 = simpleTime(modify[i].start_time_1);
-				modify[i].end_time_1 = simpleTime(modify[i].end_time_1);
-			}
-
-			if (modify.start_time_2) {
-				modify[i].start_time_2 = simpleTime(modify[i].start_time_2);
-				modify[i].end_time_2 = simpleTime(modify[i].end_time_2);
-			}
-		}
+		simpleTime(rows[0]);
+		simpleTime(modify);
 		res.render('./filters/bugsFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
 	} catch(err) {
 		throw err;
@@ -120,17 +86,7 @@ app.get('/fish', async (req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sql);
-		for (let i = 0; i < rows.length; i++) {
-			if (rows[i].start_time_1) {
-				rows[i].start_time_1 = simpleTime(rows[i].start_time_1);
-				rows[i].end_time_1 = simpleTime(rows[i].end_time_1);
-			}
-
-			if (rows[i].start_time_2) {
-				rows[i].start_time_2 = simpleTime(rows[i].start_time_2);
-				rows[i].end_time_2 = simpleTime(rows[i].end_time_2);
-			}
-		}
+		simpleTime(rows);
 		res.render('fish', {data: rows});
 	} catch(err) {
 		throw err;
@@ -156,31 +112,8 @@ app.post('/fish', async(req, res) => {
 
 		// Remove duplicate entries in the reoccuring fish
 		let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
-
-		// Change 24 hour format to 12 hour format
-		for (let i = 0; i < rows[0].length; i++) {
-			if (rows[0][i].start_time_1) {
-				rows[0][i].start_time_1 = simpleTime(rows[0][i].start_time_1);
-				rows[0][i].end_time_1 = simpleTime(rows[0][i].end_time_1);
-			}
-
-			if (rows[0][i].start_time_2) {
-				rows[0][i].start_time_2 = simpleTime(rows[0][i].start_time_2);
-				rows[0][i].end_time_2 = simpleTime(rows[0][i].end_time_2);
-			}
-		}
-
-		for (let i = 0; i < modify.length; i++) {
-			if (modify[i].start_time_1) {
-				modify[i].start_time_1 = simpleTime(modify[i].start_time_1);
-				modify[i].end_time_1 = simpleTime(modify[i].end_time_1);
-			}
-
-			if (modify.start_time_2) {
-				modify[i].start_time_2 = simpleTime(modify[i].start_time_2);
-				modify[i].end_time_2 = simpleTime(modify[i].end_time_2);
-			}
-		}
+		simpleTime(rows[0]);
+		simpleTime(modify);
 		res.render('./filters/fishFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
 	} catch(err) {
 		throw err;
@@ -200,28 +133,8 @@ app.get('/active', async(req, res) => {
 	try {
 		conn = await mariadb.pool.getConnection();
 		let rows = await conn.query(sqlQuery);
-		for (let i = 0; i < rows[0].length; i++) {
-			if (rows[0][i].start_time_1) {
-				rows[0][i].start_time_1 = simpleTime(rows[0][i].start_time_1);
-				rows[0][i].end_time_1 = simpleTime(rows[0][i].end_time_1);
-			}
-
-			if (rows[0][i].start_time_2) {
-				rows[0][i].start_time_2 = simpleTime(rows[0][i].start_time_2);
-				rows[0][i].end_time_2 = simpleTime(rows[0][i].end_time_2);
-			}
-		}
-		for (let i = 0; i < rows[1].length; i++) {
-			if (rows[1][i].start_time_1) {
-				rows[1][i].start_time_1 = simpleTime(rows[1][i].start_time_1);
-				rows[1][i].end_time_1 = simpleTime(rows[1][i].end_time_1);
-			}
-
-			if (rows[1][i].start_time_2) {
-				rows[1][i].start_time_2 = simpleTime(rows[1][i].start_time_2);
-				rows[1][i].end_time_2 = simpleTime(rows[1][i].end_time_2);
-			}
-		}
+		simpleTime(rows[0]);
+		simpleTime(rows[1]);
 		res.render('./active', {currDate: date, currTime: time, bugdata: rows[0], fishdata: rows[1]});
 	} catch(err) {
 		throw err;

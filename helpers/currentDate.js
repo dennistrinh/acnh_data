@@ -1,5 +1,11 @@
-const dateFormater = require('./dateFormater');
+// Appends 0's to months with one digit
+// i.e. 2020-5-01 turns to 2020-05-01
+function dateFormater(date) {
+	return (`0${date}`).slice(-2);
+}
 
+// Grabs the current date and formats the SQL
+// query to be sent to the database
 module.exports = function () {
 	const date_now = Date.now();
 	const date_obj = new Date(date_now);
