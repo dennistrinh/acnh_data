@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 // Shows all bugs
 app.get('/bugs', async (req, res) => {
-	const sql = 'SELECT * FROM bugs'
+	const sql = 'SELECT * FROM bugs;'
 	let conn;
 	try {
 		conn = await mariadb.pool.getConnection();
@@ -58,7 +58,7 @@ app.post('/bugs', async(req, res) => {
 	// Query statements for new bugs in the month and reoccuring bugs
 	const newQuery = sql.concat('(start_month_1=\"2020', date, '\" OR start_month_2=\"2020', date, '\")');
 	const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-	const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL)';
+	const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
 	const oldQuery = sql + sqlBuildA + sqlBuildB;
 	const sqlQuery = newQuery + ';' + oldQuery;
 	let conn;
@@ -81,7 +81,7 @@ app.post('/bugs', async(req, res) => {
 
 // Shows all fish
 app.get('/fish', async (req, res) => {
-	const sql = 'SELECT * FROM fish'
+	const sql = 'SELECT * FROM fish;'
 	let conn;
 	try {
 		conn = await mariadb.pool.getConnection();
@@ -102,7 +102,7 @@ app.post('/fish', async(req, res) => {
 	// Query statements for new fish in the month and reoccuring fish
 	const newQuery = sql.concat('(start_month_1=\"2020', date, '\" OR start_month_2=\"2020', date, '\")');
 	const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-	const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL)';
+	const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
 	const oldQuery = sql + sqlBuildA + sqlBuildB;
 	const sqlQuery = newQuery + ';' + oldQuery;
 	let conn;

@@ -17,6 +17,29 @@
     </ul>
   </div>
   <div class="menu_container">
+    <h3>June 26th, 2020: Time Complexities</h3>
+    <p> I refactored some of the code for reusability
+	sake. The conversion of 24 hour time to 12 hour
+	time was copied and pasted in every route call, so
+	I cleaned it up into a separate function. I readjusted
+	the times in the active categories as well as there was
+	an error in how I wrote my SQL query. The statement
+	was supposed to check times between the starting time
+	and the ending time, but instead it was written as
+	check times less than the starting time and less than
+	the end time. My oversight is not looking into testing earlier.
+	Manually looking at the data to see if it's correct is fairly
+	ineffective. There's another bug I suspect will arise from this
+	correction. For example, say a certain fish is only active from
+	11 pm (23:00) to 8 am. The current time is 23:15:00, so it passes
+	the inequality for being greater than the start time of 11 pm. However,
+	when it goes to check if it's less than the end time, the inequality fails
+	since 23:15 is technically greater than 8 AM. A fix might be to combine the
+	times and date into a datetime element. Also, this is a good time to
+	look into testing tools in npm.
+    </p>
+  </div>
+  <div class="menu_container">
     <h3>June 22nd, 2020: Active Bugs & Fish</h3>
     <p> After fiddling with uncooperative SQL queries,
     	I was able to create a table showing the currently

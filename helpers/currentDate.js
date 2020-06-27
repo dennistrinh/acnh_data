@@ -20,12 +20,11 @@ module.exports = function () {
 	const bug = 'SELECT * FROM bugs WHERE ';
 	const fish = 'SELECT * FROM fish WHERE ';
 	const dateQuery = '((CAST(\'' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR (CAST(\'' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL) AND ';
-	const timeQueryA = '((start_time_1 >= CAST(\'' + time + '\' AS TIME) AND CAST(\'' + time + '\' AS TIME) < end_time_1) OR ';
-	const timeQueryB = '(start_time_2 >= CAST(\'' + time + '\' AS TIME) AND CAST(\'' + time + '\' AS TIME) < end_time_2) OR start_time_1 IS NULL)';
+	const timeQueryA = '((CAST(\'' + time + '\' AS TIME) >= start_time_1 AND CAST(\'' + time + '\' AS TIME) < end_time_1) OR ';
+	const timeQueryB = '(CAST(\'' + time + '\' AS TIME) >= start_time_2 AND CAST(\'' + time + '\' AS TIME) < end_time_2) OR start_time_1 IS NULL)';
 	const bugQuery = bug + dateQuery + timeQueryA + timeQueryB;
 	const fishQuery = fish + dateQuery + timeQueryA + timeQueryB;
 	const sqlQuery = bugQuery + ';' + fishQuery;
-
 	return [sqlQuery, date, time];
 
 }
