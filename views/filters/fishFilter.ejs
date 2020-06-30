@@ -36,66 +36,81 @@
       <input class="month_submit" type="submit" value="Filter" formaction="/fish">
     </form>
   </div>
-  <h1 class="table_headers">New Fish in <%= body_month %></h1>
-  <% if (data.length == 0) { %>
-  <h1 class="table_headers">Nothing new this month!</h1>
-  <% } else { %>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Location</th>
-      <th>Shadow Size</th>
-      <th>Time Found</th>
-      <th>Price</th>
-    </tr>
-    <%- include("../functions/renderImages") %>
-    <% for (let i = 0; i < data.length; i++) { %>
-    <tr>
-      <td><%= data[i].name %></td>
-      <td><img src="/images/fish/<%= renderImages(data[i].name) %>" /></td>
-      <td><%= data[i].location %></td>
-      <td><%= data[i].shadow_size %></td>
-      <% if (data[i].start_time_1 && data[i].start_time_2) { %>
-      <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
-      <% } else if (data[i].start_time_1) { %>
-      <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
-      <% } else { %>
-      <td>All Day</td>
+  <div class="table_container">
+    <h1 class="table_headers">New Fish in <%= body_month %></h1>
+    <% if (data.length == 0) { %>
+    <h2 class="table_headers">Nothing new this month!</h2>
+    <% } else { %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Location [Shadow Size]</th>
+        <th>Months Available</th>
+        <th>Time Found</th>
+        <th>Price</th>
+      </tr>
+      <%- include("../functions/renderImages") %>
+      <% for (let i = 0; i < data.length; i++) { %>
+      <tr>
+        <td><%= data[i].name %></td>
+        <td><img src="/images/fish/<%= renderImages(data[i].name) %>" /></td>
+        <td><%= data[i].location %> [<%= data[i].shadow_size %>]</td>
+        <% if (data[i].start_month_1 && data[i].start_month_2) { %>
+        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
+        <% } else if (data[i].start_month_1) { %>
+        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %>
+        <% } else { %>
+        <td>All Year</td>
+        <% } %>
+        <% if (data[i].start_time_1 && data[i].start_time_2) { %>
+        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
+        <% } else if (data[i].start_time_1) { %>
+        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
+        <% } else { %>
+        <td>All Day</td>
+        <% } %>
+        <td><%= data[i].price %></td>
+      </tr>
       <% } %>
-      <td><%= data[i].price %></td>
-    </tr>
     <% } %>
-  <% } %>
-  </table>
-  <h1 class="table_headers">Reoccuring Fish (from other months)</h1>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Location</th>
-      <th>Shadow Size</th>
-      <th>Time Found</th>
-      <th>Price</th>
-    </tr>
-    <%- include("../functions/renderImages") %>
-    <% for (let i = 0; i < curr.length; i++) { %>
-    <tr>
-      <td><%= curr[i].name %></td>
-      <td><img src="/images/fish/<%= renderImages(curr[i].name) %>" /></td>
-      <td><%= curr[i].location %></td>
-      <td><%= curr[i].shadow_size %></td>
-      <% if (curr[i].start_time_1 && curr[i].start_time_2) { %>
-      <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %><br><%= curr[i].start_time_2 %> - <%= curr[i].end_time_2 %></td>
-      <% } else if (curr[i].start_time_1) { %>
-      <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %>
-      <% } else { %>
-      <td>All Day</td>
+    </table>
+  </div>
+  <div class="table_container">
+    <h1 class="table_headers">Reoccuring Fish (from other months)</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Location [Shadow Size]</th>
+        <th>Months Available</th>
+        <th>Time Found</th>
+        <th>Price</th>
+      </tr>
+      <%- include("../functions/renderImages") %>
+      <% for (let i = 0; i < curr.length; i++) { %>
+      <tr>
+        <td><%= curr[i].name %></td>
+        <td><img src="/images/fish/<%= renderImages(curr[i].name) %>" /></td>
+        <td><%= curr[i].location %> [<%= curr[i].shadow_size %>]</td>
+        <% if (curr[i].start_month_1 && curr[i].start_month_2) { %>
+        <td><%= curr[i].start_month_1 %> - <%= curr[i].end_month_1 %><br><%= curr[i].start_month_2 %> - <%= curr[i].end_month_2 %></td>
+        <% } else if (curr[i].start_month_1) { %>
+        <td><%= curr[i].start_month_1 %> - <%= curr[i].end_month_1 %>
+        <% } else { %>
+        <td>All Year</td>
+        <% } %>
+        <% if (curr[i].start_time_1 && curr[i].start_time_2) { %>
+        <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %><br><%= curr[i].start_time_2 %> - <%= curr[i].end_time_2 %></td>
+        <% } else if (curr[i].start_time_1) { %>
+        <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %>
+        <% } else { %>
+        <td>All Day</td>
+        <% } %>
+        <td><%= curr[i].price %></td>
+      </tr>
       <% } %>
-      <td><%= curr[i].price %></td>
-    </tr>
-    <% } %>
-  </table>
-
+    </table>
+  </div>
 </body>
 </html>

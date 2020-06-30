@@ -25,7 +25,6 @@ module.exports = function(str) {
 		case 'December':
 			return "-12-01";
 		default:
-			console.log("Invalid Month");
-			break;
+			return "Invalid";
 	}
 }

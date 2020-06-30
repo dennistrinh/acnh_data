@@ -11,7 +11,9 @@
     "mariadb": "^2.4.0"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+     "deploy": "node app.js"
+  },
   "author": "\"Dennis Trinh\"",
   "license": "ISC"
 }

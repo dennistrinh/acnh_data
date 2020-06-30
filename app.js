@@ -7,7 +7,7 @@ const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
 const monthToDate = require('./helpers/monthToDate.js'); // i.e. Changes January into "2020-01-01"
-const simpleTime = require('./helpers/simpleTime.js'); // Converts 24 hour time to 12 hour time
+const simpleTime = require('./helpers/simplify.js'); // Converts 24 hour time to 12 hour time & converts month to string
 const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement
 const https = require('https');
 const fs = require('fs');
@@ -53,9 +53,9 @@ app.get('/bugs', async (req, res) => {
 
 // Shows bugs specified to user's input for month
 app.post('/bugs', async(req, res) => {
-	const sql = 'SELECT * FROM bugs WHERE ';
 	const date = monthToDate(req.body["month"]);
 	// Query statements for new bugs in the month and reoccuring bugs
+	const sql = 'SELECT * FROM bugs WHERE ';
 	const newQuery = sql.concat('(start_month_1=\"2020', date, '\" OR start_month_2=\"2020', date, '\")');
 	const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
 	const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
