@@ -20,6 +20,10 @@ th, td {
 	width:10%;
 }
 
+th {
+	cursor: pointer;
+}
+
 .menu_container {
 	width: 50%;
 	margin: 0 auto;

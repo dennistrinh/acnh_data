@@ -38,14 +38,14 @@
   </div>
   <div class="table_container">
     <h1 class="table_headers">All Bugs in Animal Crossing New Horizons</h1>
-    <table>
+    <table id="bugs">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('bugs', 0)">Name</th>
+        <th onclick="sortRows('bugs', 1)">Image</th>
+        <th onclick="sortRows('bugs', 2)">Location</th>
+        <th onclick="sortRows('bugs', 3)">Months Available</th>
+        <th onclick="sortRows('bugs', 4)">Time Found</th>
+        <th onclick="sortRows('bugs', 5)">Price</th>
       </tr>
       <%- include("./functions/renderImages") %>
       <% for (let i = 0; i < data.length; i++) { %>
@@ -71,6 +71,7 @@
       </tr>
       <% } %>
     </table>
+  <script type="text/javascript" src="/func/sortRows.js"></script>
   </div>
 </body>
 </html>
