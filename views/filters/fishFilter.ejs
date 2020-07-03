@@ -5,6 +5,7 @@
   <title>Animal Crossing New Horizons Fish</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
+  <script type="text/javascript" src="/func/sortRows.js"></script>
 </head>
 <body>
   <div class="menu_container">
@@ -41,14 +42,14 @@
     <% if (data.length == 0) { %>
     <h2 class="table_headers">Nothing new this month!</h2>
     <% } else { %>
-    <table>
+    <table id="newFish">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location [Shadow Size]</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('newFish', 0)">Name</th>
+        <th onclick="sortRows('newFish', 1)">Image</th>
+        <th onclick="sortRows('newFish', 2)">Location [Shadow Size]</th>
+        <th onclick="sortRows('newFish', 3)">Months Available</th>
+        <th onclick="sortRows('newFish', 4)">Time Found</th>
+        <th onclick="sortRows('newFish', 5)">Price</th>
       </tr>
       <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < data.length; i++) { %>
@@ -78,14 +79,14 @@
   </div>
   <div class="table_container">
     <h1 class="table_headers">Reoccuring Fish (from other months)</h1>
-    <table>
+    <table id="oldFish">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location [Shadow Size]</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('oldFish', 0)">Name</th>
+        <th onclick="sortRows('oldFish', 1)">Image</th>
+        <th onclick="sortRows('oldFish', 2)">Location [Shadow Size]</th>
+        <th onclick="sortRows('oldFish', 3)">Months Available</th>
+        <th onclick="sortRows('oldFish', 4)">Time Found</th>
+        <th onclick="sortRows('oldFish', 5)">Price</th>
       </tr>
       <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < curr.length; i++) { %>

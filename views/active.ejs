@@ -5,6 +5,7 @@
   <title>Animal Crossing New Horizons Active Bugs & Fish</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
+  <script type="text/javascript" src="/func/sortRows.js"></script>
 </head>
 <body>
   <div class="menu_container">
@@ -18,14 +19,14 @@
   </div>
   <div class="table_container">
     <h1 class="table_headers">Bugs Currently Active: <%= currDate %> (<%= currTime %> UTC)</h1>
-    <table>
+    <table id="bugs">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('bugs', 0)">Name</th>
+        <th onclick="sortRows('bugs', 1)">Image</th>
+        <th onclick="sortRows('bugs', 2)">Location</th>
+        <th onclick="sortRows('bugs', 3)">Months Available</th>
+        <th onclick="sortRows('bugs', 4)">Time Found</th>
+        <th onclick="sortRows('bugs', 5)">Price</th>
       </tr>
       <%- include("./functions/renderImages") %>
       <% for (let i = 0; i < bugdata.length; i++) { %>
@@ -54,14 +55,14 @@
   </div>
   <div class="table_container">
     <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC)</h1>
-    <table>
+    <table id="fish">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location [Shadow Size]</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('fish', 0)">Name</th>
+        <th onclick="sortRows('fish', 1)">Image</th>
+        <th onclick="sortRows('fish', 2)">Location [Shadow Size]</th>
+        <th onclick="sortRows('fish', 3)">Months Available</th>
+        <th onclick="sortRows('fish', 4)">Time Found</th>
+        <th onclick="sortRows('fish', 5)">Price</th>
       </tr>
       <%- include("./functions/renderImages") %>
       <% for (let i = 0; i < fishdata.length; i++) { %>

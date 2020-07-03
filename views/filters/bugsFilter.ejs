@@ -5,6 +5,7 @@
   <title>Animal Crossing New Horizons Bugs</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
+  <script type="text/javascript" src="/func/sortRows.js"></script>
 </head>
 <body>
   <div class="menu_container">
@@ -41,14 +42,14 @@
     <% if (data.length == 0) { %>
     <h2 class="table_headers">Nothing new this month!</h2>
     <% } else { %>
-    <table>
+    <table id="newBugs">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('newBugs', 0)">Name</th>
+        <th onclick="sortRows('newBugs', 1)">Image</th>
+        <th onclick="sortRows('newBugs', 2)">Location</th>
+        <th onclick="sortRows('newBugs', 3)">Months Available</th>
+        <th onclick="sortRows('newBugs', 4)">Time Found</th>
+        <th onclick="sortRows('newBugs', 5)">Price</th>
       </tr>
       <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < data.length; i++) { %>
@@ -78,14 +79,14 @@
   </div>
   <div class="table_container">
     <h1 class="table_headers">Reoccuring Bugs (from other months)</h1>
-    <table>
+    <table id="oldBugs">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Location</th>
-        <th>Months Available</th>
-        <th>Time Found</th>
-        <th>Price</th>
+        <th onclick="sortRows('oldBugs', 0)">Name</th>
+        <th onclick="sortRows('oldBugs', 1)">Image</th>
+        <th onclick="sortRows('oldBugs', 2)">Location</th>
+        <th onclick="sortRows('oldBugs', 3)">Months Available</th>
+        <th onclick="sortRows('oldBugs', 4)">Time Found</th>
+        <th onclick="sortRows('oldBugs', 5)">Price</th>
       </tr>
       <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < curr.length; i++) { %>
