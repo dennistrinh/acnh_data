@@ -11,5 +11,9 @@ Jenkin*
 .env
 /keys
 
+# Ignore copied and minimized test files.
+*.test.js~
+*.test.js.un
+
 # Ignore personal stuff
 dennis*
