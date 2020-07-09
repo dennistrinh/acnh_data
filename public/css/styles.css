@@ -46,7 +46,7 @@ li.menu_button {
 	padding: 0.5em;
 	margin: 0.25em;
 	text-align: center;
-	float:left;
+	float: left;
 }
 
 li.menu_button:hover {
@@ -59,8 +59,13 @@ a.menu_link {
 	color: #000000;
 }
 
-h3, p, form{
+h3, p, form {
 	text-align: center;
+}
+
+ol {
+	text-align: center;
+	list-style-position: inside;
 }
 
 select.month_select, label.month_label, input.month_submit {

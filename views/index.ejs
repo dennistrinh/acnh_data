@@ -38,11 +38,13 @@
       currentTime IS BETWEEN start_time AND end_time'. One workaround I think
       might work is to a negation so not between the two times. Another solution
       could be to set 3 conditionals:
+     </p>
       <ol>
         <li>start < end AND currentTime BETWEEN start and end (the original query)</li>
         <li>end < start AND currentTime < start AND currentTime < end (covers day changes)</li>
         <li>end < start AND currentTime > start (covers period between 11 PM and midnight)</li>
       </ol>
+    <p>
       I'll play with both ideas tomorrow and see where that takes me.
     </p>
   </div>
