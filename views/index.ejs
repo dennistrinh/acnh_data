@@ -17,6 +17,36 @@
     </ul>
   </div>
   <div class="menu_container">
+    <h3>July 8th, 2020: Surely you Jest</h3>
+    <p> The fireworks haven't stopped since July 4th.
+      One of my neighbors seems to have stockpiled
+      a decades worth of them and he goes at it every night.
+      Anywho, I've been dabbling with testing libraries like
+      Jest and Selenium and they're pretty friendly to use.
+      Selenium took a while to wrap my head around since
+      you have to build the driver first and use await calls
+      to wait for the driver to pull info from the page you're
+      testing. I just have a basic test for the bugs page right
+      now, but will expand it as I go. <br>
+      In terms of functionality, I started working on
+      the timezone converter; however, there's an unresolved bug I have to
+      resolve first: if the current time falls between a certain range (11 PM
+      to 5 AM), then my SQL queries don't properly handle the day
+      change. As a result, the only data that shows up are the bugs/fish
+      that are available all day. My current query doesn't account for changes
+      in a new day, so it gets confused when I say 'SELECT * FROM 'bugs' WHERE
+      currentTime IS BETWEEN start_time AND end_time'. One workaround I think
+      might work is to a negation so not between the two times. Another solution
+      could be to set 3 conditionals:
+      <ol>
+        <li>start < end AND currentTime BETWEEN start and end (the original query)</li>
+        <li>end < start AND currentTime < start AND currentTime < end (covers day changes)</li>
+        <li>end < start AND currentTime > start (covers period between 11 PM and midnight)</li>
+      </ol>
+      I'll play with both ideas tomorrow and see where that takes me.
+    </p>
+  </div>
+  <div class="menu_container">
     <h3>July 1st, 2020: Cleaning Up & Looking Into Testing</h3>
     <p> Happy July! I cleaned up some of the code into separate
 	helper functions. In addition, months are now visible on

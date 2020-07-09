@@ -1,7 +1,7 @@
 require('chromedriver')
 const {Builder, By, Key, util} = require('selenium-webdriver');
 const url = 'https://dennistrinh.net/bugs';
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60 * 5;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60 * 1;
 let browser;
 
 // Initialize Builder and check title
@@ -85,6 +85,16 @@ describe('Table sorts are correct', () => {
       const first = await browser.findElement(By.xpath('//*[@id="bugs"]/tbody/tr[2]/td[6]')).getText();
       expect(first).toBe('12000');
     });
+  });
+});
+
+describe('Check if month data is correct', () => {
+  it('January bugs correct', async () => {
+    await browser.findElement(By.tagName('select')).sendKeys('January');
+    const button = browser.findElement(By.tagName('input'));
+    await browser.wait(button.click());
+    const desc = await browser.findElement(By.tagName('h2')).getText();
+    expect(desc).toContain('Nothing new');
   });
 });
 
