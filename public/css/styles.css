@@ -68,11 +68,14 @@ ol {
 	list-style-position: inside;
 }
 
-select.month_select, label.month_label, input.month_submit {
+select.month_select, select.timezone_select, 
+label.month_label, label.timezone_label, 
+input.month_submit, input.timezone_submit {
 	padding: 0.5em;
 	margin: 0.25em;
 	margin-bottom: 2.5em;
 }
+
 
 .table_headers {
 	text-align: center;
@@ -81,4 +84,9 @@ select.month_select, label.month_label, input.month_submit {
 .table_container {
 	margin: 0.5em;
 	padding: 0.5em;
+}
+
+#octocat {
+	width: 80px;
+	height: 66px;
 }

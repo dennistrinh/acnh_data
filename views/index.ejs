@@ -13,8 +13,23 @@
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" width=80px height=66px></a></li>
+      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
+  </div>
+  <div class="menu_container">
+    <h3>July 13th, 2020: Time zones</h3>
+    <p> Fireworks are still going strong at night.
+	At long last, the active page has been fixed. It
+	seems the three conditionals I added to the SQL
+	(see last blog post) query accounts for all situations
+	that was causing data to be missing from the cells.
+	In addition, you can now filter by timezones! It was fairly
+	straightforward to implement since it builds upon my
+	military time converter. I would have the user select their time
+	zone and add on whatever UTC value they chose to the current
+	UTC+0 time. i.e. If the user chose UTC-7, then the program takes
+	the current time, subtracts it by 7, then builds the query.
+    </p>
   </div>
   <div class="menu_container">
     <h3>July 8th, 2020: Surely you Jest</h3>

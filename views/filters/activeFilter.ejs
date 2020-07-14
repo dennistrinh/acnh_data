@@ -14,8 +14,9 @@
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github repo"></a></li>
+      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
+  </div>
   <div class="menu_container">
     <form method="POST">
       <label for="timezones" class="timezone_label">Timezone</label>
@@ -49,10 +50,14 @@
       <input class="timezone_submit" type="submit" value="Apply" formaction="/active">
     </form>
   </div>
-
-  </div>
   <div class="table_container">
-    <h1 class="table_headers">Bugs Currently Active: <%= currDate %> (<%= currTime %> UTC+0)</h1>
+    <h1 class="table_headers">Bugs Currently Active: <%= currDate %> (<%= currTime %> UTC
+    <% if (Number(zone) >= 0) { %>
+    +<%= zone %>)
+    <% } else { %>
+    <%= zone %>)
+    <% } %>
+    </h1>
     <table id="bugs">
       <tr>
         <th onclick="sortRows('bugs', 0)">Name</th>
@@ -62,7 +67,7 @@
         <th onclick="sortRows('bugs', 4)">Time Found</th>
         <th onclick="sortRows('bugs', 5)">Price</th>
       </tr>
-      <%- include("./functions/renderImages") %>
+      <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < bugdata.length; i++) { %>
       <tr>
         <td><%= bugdata[i].name %></td>
@@ -88,7 +93,13 @@
     </table>
   </div>
   <div class="table_container">
-    <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC)</h1>
+    <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC
+    <% if (Number(zone) >= 0) { %>
+    +<%= zone %>)
+    <% } else { %>
+    <%= zone %>)
+    <% } %>
+    </h1>
     <table id="fish">
       <tr>
         <th onclick="sortRows('fish', 0)">Name</th>
@@ -98,7 +109,7 @@
         <th onclick="sortRows('fish', 4)">Time Found</th>
         <th onclick="sortRows('fish', 5)">Price</th>
       </tr>
-      <%- include("./functions/renderImages") %>
+      <%- include("../functions/renderImages") %>
       <% for (let i = 0; i < fishdata.length; i++) { %>
       <tr>
         <td><%= fishdata[i].name %></td>

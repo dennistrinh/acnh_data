@@ -123,7 +123,6 @@ app.post('/fish', async(req, res) => {
 });
 
 // Shows all active fish for current date/time in UTC
-// TODO: Button for user to update timezone
 app.get('/active', async(req, res) => {
 	const data = currentDate();
 	const sqlQuery = data[0];
@@ -142,6 +141,28 @@ app.get('/active', async(req, res) => {
 		if (conn) return conn.release();
 	}
 });
+
+// Shows all active fish with specified time zone
+app.post('/active', async(req, res) => {
+	const timezone = req.body["timezone"];
+	const data = currentDate(timezone);
+	const sqlQuery = data[0];
+	const date = data[1];
+	const time = data[2];
+	try {
+		conn = await mariadb.pool.getConnection();
+		let rows = await conn.query(sqlQuery);
+		simpleTime(rows[0]);
+		simpleTime(rows[1]);
+		res.render('./filters/activeFilter', {currDate: date, currTime: time, zone: timezone, bugdata: rows[0], fishdata: rows[1]});
+	} catch(err) {
+		throw err;
+	} finally {
+		if (conn) return conn.release();
+	}
+});
+
+
 
 // Redirect to github repo
 app.get('/github', (req, res) => {
