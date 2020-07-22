@@ -2,11 +2,10 @@
 A project to test out some features of AWS as well as explore some web technologies while I'm at it.
 
 ## Current Functionality
-- See all bugs & fish (sortable)
-- Filter bugs & fish by month
-- See currently active bugs & fish (and by timezone)
+- See all bugs, fish, and sea creatures (sortable)
+- Filter bugs, fish, and sea creatures by month
+- See currently active bugs, fish, and sea creatures (and by timezone)
 
 ## Todos
 - More filters (price, shadow size, etc)
-- Need to add sea creatures data
 - Southern Hemisphere data needs to be added

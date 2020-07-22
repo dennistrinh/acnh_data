@@ -12,9 +12,33 @@
       <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
       <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
+  </div>
+  <div class="menu_container">
+    <h3>July 22nd, 2020: Deep Dive</h3>
+    <p> Fireworks have finally stopped.
+	Sea Creatures have been added to the database.
+	I also found a bug while reorganizing some of
+	my code. Due to the way my SQL schema records
+	date ranges, if certain things appeared in 2021,
+	then they wouldn't show up at all on the webpage.
+	It's possible I might have to change the way that
+	data is represented on the SQL table. Instead of having
+	"2020-05-01" to "2020-06-30" for example, I might have
+	to record true/false booleans for all the months that
+	the creatures show up. For now, I have a simple workaround
+	that checks for both 2020 and 2021. <br /><br /> 
+	As a side note, I've been working through the Golang tutorial.
+	It uses some interesting conventions like short variable declaration (:=)
+	and also the way they handle type declarations. The type always comes after
+	the variable in Go. As stated from the docs, the type is declared after the
+	variable for readability's sake. For example, you can always identify the
+	name and return types for a function no matter how nested it becomes.
+	See <a href='https://blog.golang.org/declaration-syntax'>declaration syntax</a>.
+    </p>
   </div>
   <div class="menu_container">
     <h3>July 13th, 2020: Time zones</h3>
@@ -42,7 +66,7 @@
       you have to build the driver first and use await calls
       to wait for the driver to pull info from the page you're
       testing. I just have a basic test for the bugs page right
-      now, but will expand it as I go. <br>
+      now, but will expand it as I go. <br /><br />
       In terms of functionality, I started working on
       the timezone converter; however, there's an unresolved bug I have to
       resolve first: if the current time falls between a certain range (11 PM
@@ -229,6 +253,5 @@
        of exploring AWS while doing this project.
     </p>
   </div>
-
 </body>
 </html>

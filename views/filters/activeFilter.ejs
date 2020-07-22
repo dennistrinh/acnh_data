@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Animal Crossing New Horizons Active Bugs & Fish</title>
+  <title>Animal Crossing New Horizons Active Bugs & Fish & Sea Creatures</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
   <script type="text/javascript" src="/func/sortRows.js"></script>
@@ -12,7 +12,8 @@
     <ul class="menu">
       <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
-      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li> 
+      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
       <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
@@ -130,6 +131,48 @@
         <td>All Day</td>
         <% } %>
         <td><%= fishdata[i].price %></td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+  <div class="table_container">
+    <h1 class="table_headers">Sea Creatures Currently Active: <%= currDate %> (<%= currTime %> UTC
+    <% if (Number(zone) >= 0) { %>
+    +<%= zone %>)
+    <% } else { %>
+    <%= zone %>)
+    <% } %>
+    </h1>
+    <table id="sea">
+      <tr>
+        <th onclick="sortRows('sea', 0)">Name</th>
+        <th onclick="sortRows('sea', 1)">Image</th>
+        <th onclick="sortRows('sea', 2)">Shadow [Swim Speed]</th>
+        <th onclick="sortRows('sea', 3)">Months Available</th>
+        <th onclick="sortRows('sea', 4)">Time Found</th>
+        <th onclick="sortRows('sea', 5)">Price</th>
+      </tr>
+      <%- include("../functions/renderImages") %>
+      <% for (let i = 0; i < seadata.length; i++) { %>
+      <tr>
+        <td><%= seadata[i].name %></td>
+        <td><img src="/images/sea/<%= renderImages(seadata[i].name) %>" /></td>
+        <td><%= seadata[i].location %> [<%= seadata[i].shadow_size %>]</td>
+        <% if (seadata[i].start_month_1 && seadata[i].start_month_2) { %>
+        <td><%= seadata[i].start_month_1 %> - <%= seadata[i].end_month_1 %><br><%= seadata[i].start_month_2 %> - <%= seadata[i].end_month_2 %></td>
+        <% } else if (seadata[i].start_month_1) { %>
+        <td><%= seadata[i].start_month_1 %> - <%= seadata[i].end_month_1 %>
+        <% } else { %>
+        <td>All Year</td>
+        <% } %>
+        <% if (seadata[i].start_time_1 && seadata[i].start_time_2) { %>
+        <td><%= seadata[i].start_time_1 %> - <%= seadata[i].end_time_1 %><br><%= seadata[i].start_time_2 %> - <%= seadata[i].end_time_2 %></td>
+        <% } else if (seadata[i].start_time_1) { %>
+        <td><%= seadata[i].start_time_1 %> - <%= seadata[i].end_time_1 %>
+        <% } else { %>
+        <td>All Day</td>
+        <% } %>
+        <td><%= seadata[i].price %></td>
       </tr>
       <% } %>
     </table>

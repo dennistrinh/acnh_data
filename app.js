@@ -6,9 +6,10 @@ const dotenv = require('dotenv').config();
 const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
-const monthToDate = require('./helpers/monthToDate.js'); // i.e. Changes January into "2020-01-01"
-const simpleTime = require('./helpers/simplify.js'); // Converts 24 hour time to 12 hour time & converts month to string
-const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement
+const monthToDate = require('./helpers/monthToDate'); // i.e. Changes January into "2020-01-01"
+const simpleTime = require('./helpers/simplify'); // Converts 24 hour time to 12 hour time & converts month to string
+const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement\
+const postQuery = require('./helpers/postQuery'); // Creates the POST SQL queries
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -54,13 +55,7 @@ app.get('/bugs', async (req, res) => {
 // Shows bugs specified to user's input for month
 app.post('/bugs', async(req, res) => {
   const date = monthToDate(req.body["month"]);
-  // Query statements for new bugs in the month and reoccuring bugs
-  const sql = 'SELECT * FROM bugs WHERE ';
-  const newQuery = sql.concat('(start_month_1=\"2020', date, '\" OR start_month_2=\"2020', date, '\")');
-  const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-  const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
-  const oldQuery = sql + sqlBuildA + sqlBuildB;
-  const sqlQuery = newQuery + ';' + oldQuery;
+  const sqlQuery = postQuery('bugs', date);
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
@@ -96,14 +91,8 @@ app.get('/fish', async (req, res) => {
 
 // Shows fish that show up in user specified month
 app.post('/fish', async(req, res) => {
-  const sql = 'SELECT * FROM fish WHERE ';
   const date = monthToDate(req.body["month"]);
-  // Query statements for new fish in the month and reoccuring fish
-  const newQuery = sql.concat('(start_month_1=\"2020', date, '\" OR start_month_2=\"2020', date, '\")');
-  const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-  const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
-  const oldQuery = sql + sqlBuildA + sqlBuildB;
-  const sqlQuery = newQuery + ';' + oldQuery;
+  const sqlQuery = postQuery('fish', date);
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
@@ -120,7 +109,45 @@ app.post('/fish', async(req, res) => {
   }
 });
 
-// Shows all active fish for current date/time in UTC
+// Shows all sea creatures
+app.get('/sea', async (req, res) => {
+  const sql = 'SELECT * FROM sea_creatures;'
+  let conn;
+  try {
+    conn = await mariadb.pool.getConnection();
+    let rows = await conn.query(sql);
+    simpleTime(rows);
+    res.render('sea_creatures', {data: rows});
+  } catch(err) {
+    throw err;
+  } finally {
+    if (conn) return conn.release();
+  }
+});
+
+// Shows sea creatures that show up in user specified month
+app.post('/sea', async(req, res) => {
+  const date = monthToDate(req.body["month"]);
+  const sqlQuery = postQuery('sea_creatures', date);
+  let conn;
+  try {
+    conn = await mariadb.pool.getConnection();
+    let rows = await conn.query(sqlQuery);  
+    // Remove duplicate entries in the reoccuring fish
+    let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
+    simpleTime(rows[0]);
+    simpleTime(modify);
+    res.render('./filters/seaFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
+  } catch(err) {
+    throw err;
+  } finally {
+    if (conn) return conn.release();
+  }
+});
+
+
+// Shows all active bugs, fish, and sea creatures 
+// for current date/time in UTC
 app.get('/active', async(req, res) => {
   const data = currentDate();
   const sqlQuery = data[0];
@@ -132,7 +159,14 @@ app.get('/active', async(req, res) => {
     let rows = await conn.query(sqlQuery);
     simpleTime(rows[0]);
     simpleTime(rows[1]);
-    res.render('./active', {currDate: date, currTime: time, bugdata: rows[0], fishdata: rows[1]});
+    simpleTime(rows[2]);
+    res.render('./active', {
+      currDate: date, 
+      currTime: time, 
+      bugdata: rows[0], 
+      fishdata: rows[1],
+      seadata: rows[2]
+    });
   } catch(err) {
     throw err;
   } finally {
@@ -140,7 +174,8 @@ app.get('/active', async(req, res) => {
   }
 });
 
-// Shows all active fish with specified time zone
+// Shows all active bugs, fish, and sea creatures
+// with specified time zone
 app.post('/active', async(req, res) => {
   const timezone = req.body["timezone"];
   const data = currentDate(timezone);
@@ -152,7 +187,15 @@ app.post('/active', async(req, res) => {
     let rows = await conn.query(sqlQuery);
     simpleTime(rows[0]);
     simpleTime(rows[1]);
-    res.render('./filters/activeFilter', {currDate: date, currTime: time, zone: timezone, bugdata: rows[0], fishdata: rows[1]});
+    simpleTime(rows[2]);
+    res.render('./filters/activeFilter', {
+      currDate: date, 
+      currTime: time, 
+      zone: timezone, 
+      bugdata: rows[0], 
+      fishdata: rows[1],
+      seadata: rows[2]
+    });
   } catch(err) {
     throw err;
   } finally {
@@ -162,13 +205,13 @@ app.post('/active', async(req, res) => {
 
 
 
-// Redirect to github repo
+// Redirect to github repository
 app.get('/github', (req, res) => {
   res.redirect('https://github.com/dennistrinh/acnh_data');
 });
 
 // Old resume location
-app.get('/dennis', (req, res) => {
+/* app.get('/dennis', (req, res) => {
   const loc = process.env.RES_LOC;
   fs.readFile(loc, (err, data) => {
   if (err)
@@ -178,12 +221,15 @@ app.get('/dennis', (req, res) => {
     res.send(data);
   }
   });
-});
+}); */
 
+// HTTP Server
 const server = app.listen(port, () => {
   console.log('Express started on localhost:' + port);
 });
 
+// HTTPS Server
 const httpsServer = https.createServer(options, app).listen(https_port, () => {
   console.log('HTTPS Express started on https://localhost:' + https_port);
 });
+

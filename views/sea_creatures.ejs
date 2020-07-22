@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Animal Crossing New Horizons Bugs</title>
+  <title>Animal Crossing New Horizons Sea Creatures</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
   <script type="text/javascript" src="/func/sortRows.js"></script>
@@ -13,7 +13,7 @@
       <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</li>
+      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
       <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
@@ -35,26 +35,26 @@
 	<option value="November">November</option>
 	<option value="December">December</option>
       </select>
-      <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
+      <input class="month_submit" type="submit" value="Filter" formaction="/sea">
     </form>
   </div>
   <div class="table_container">
-    <h1 class="table_headers">All Bugs in Animal Crossing New Horizons</h1>
-    <table id="bugs">
+    <h1 class="table_headers">All Sea Creatures in Animal Crossing New Horizons</h1>
+    <table id="sea_creatures">
       <tr>
-        <th onclick="sortRows('bugs', 0)">Name</th>
-        <th onclick="sortRows('bugs', 1)">Image</th>
-        <th onclick="sortRows('bugs', 2)">Location</th>
-        <th onclick="sortRows('bugs', 3)">Months Available</th>
-        <th onclick="sortRows('bugs', 4)">Time Found</th>
-        <th onclick="sortRows('bugs', 5)">Price</th>
+        <th onclick="sortRows('sea_creatures', 0)">Name</th>
+        <th onclick="sortRows('sea_creatures', 1)">Image</th>
+        <th onclick="sortRows('sea_creatures', 2)">Shadow [Swim Speed]</th>
+        <th onclick="sortRows('sea_creatures', 3)">Months Available</th>
+        <th onclick="sortRows('sea_creatures', 4)">Time Found</th>
+        <th onclick="sortRows('sea_creatures', 5)">Price</th>
       </tr>
       <%- include("./functions/renderImages") %>
       <% for (let i = 0; i < data.length; i++) { %>
       <tr>
         <td><%= data[i].name %></td>
-        <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
-        <td><%= data[i].location %></td>
+        <td><img src="/images/sea/<%= renderImages(data[i].name) %>" /></td>
+        <td><%= data[i].shadow_size %> [<%= data[i].swim_speed %>]</td>
         <% if (data[i].start_month_1 && data[i].start_month_2) { %>
         <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
         <% } else if (data[i].start_month_1) { %>

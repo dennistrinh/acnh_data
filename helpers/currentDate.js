@@ -18,6 +18,7 @@ function militaryConvert(time) {
 function queryCreator(date, time) {
   const bug = 'SELECT * FROM bugs WHERE ';
   const fish = 'SELECT * FROM fish WHERE ';
+  const sea = 'SELECT * FROM sea_creatures WHERE ';
   const dateQuery = '((CAST(\'' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR (CAST(\'' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL) AND ';	
   // A: start <= time < end (time is between start and end times)
   // B: end < start; time <= start; time < end (covers day changes)
@@ -32,7 +33,8 @@ function queryCreator(date, time) {
   const timeQuery2 = timeQueryA_2 + timeQueryB_2 + timeQueryC_2;
   const bugQuery = bug + dateQuery + timeQuery1 + timeQuery2;
   const fishQuery = fish + dateQuery + timeQuery1 + timeQuery2;
-  const sqlQuery = bugQuery + ';' + fishQuery;
+  const seaQuery = sea + dateQuery + timeQuery1 + timeQuery2;
+  const sqlQuery = bugQuery + ';' + fishQuery + ';' + seaQuery;
   return sqlQuery;
 }
 
