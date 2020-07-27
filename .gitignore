@@ -16,7 +16,7 @@ Jenkin*
 *.test.js.un
 
 # Ignore logs
-*.log*
+*.log
 
 # Ignore personal stuff
 dennis*

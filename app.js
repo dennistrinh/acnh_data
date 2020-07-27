@@ -64,7 +64,11 @@ app.post('/bugs', async(req, res) => {
     let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
     simpleTime(rows[0]);
     simpleTime(modify);
-    res.render('./filters/bugsFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
+    res.render('./filters/bugsFilter', {
+      data: rows[0], 
+      curr: modify, 
+      body_month: req.body["month"]
+    });
   } catch(err) {
     throw err;
   } finally {
@@ -101,7 +105,11 @@ app.post('/fish', async(req, res) => {
     let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
     simpleTime(rows[0]);
     simpleTime(modify);
-    res.render('./filters/fishFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
+    res.render('./filters/fishFilter', {
+      data: rows[0], 
+      curr: modify, 
+      body_month: req.body["month"]
+    });
   } catch(err) {
     throw err;
   } finally {
@@ -137,7 +145,11 @@ app.post('/sea', async(req, res) => {
     let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
     simpleTime(rows[0]);
     simpleTime(modify);
-    res.render('./filters/seaFilter', {data: rows[0], curr: modify, body_month: req.body["month"]});
+    res.render('./filters/seaFilter', {
+      data: rows[0], 
+      curr: modify, 
+      body_month: req.body["month"]
+    });
   } catch(err) {
     throw err;
   } finally {

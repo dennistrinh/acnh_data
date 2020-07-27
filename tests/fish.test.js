@@ -164,7 +164,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in May');
+    expect(header).toBe('New Fish in May');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Frog');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -183,7 +183,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in June');
+    expect(header).toBe('New Fish in June');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Giant Snakehead');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -202,7 +202,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in July');
+    expect(header).toBe('New Fish in July');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Sweetfish');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -221,7 +221,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in August');
+    expect(header).toBe('New Fish in August');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Soft-shelled Turtle');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -240,7 +240,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in September');
+    expect(header).toBe('New Fish in September');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Pike');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -259,7 +259,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in October');
+    expect(header).toBe('New Fish in October');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Dab');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -278,7 +278,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in November');
+    expect(header).toBe('New Fish in November');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Bitterling');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');
@@ -297,7 +297,7 @@ describe('Check if month data is correct', () => {
     const button = browser.findElement(By.css('input'));
     await browser.wait(button.click());
     const header = await browser.findElement(By.css('h1')).getText();
-    expect(header).toContain('New Fish in December');
+    expect(header).toBe('New Fish in December');
     const name = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[1]')).getText();
     expect(name).toBe('Pond Smelt');
     const image = await browser.findElement(By.xpath('//*[@id="newFish"]/tbody/tr[2]/td[2]/img')).getAttribute('src');

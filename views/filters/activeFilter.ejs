@@ -157,7 +157,7 @@
       <tr>
         <td><%= seadata[i].name %></td>
         <td><img src="/images/sea/<%= renderImages(seadata[i].name) %>" /></td>
-        <td><%= seadata[i].location %> [<%= seadata[i].shadow_size %>]</td>
+        <td><%= seadata[i].shadow_size %> [<%= seadata[i].swim_speed %>]</td>
         <% if (seadata[i].start_month_1 && seadata[i].start_month_2) { %>
         <td><%= seadata[i].start_month_1 %> - <%= seadata[i].end_month_1 %><br><%= seadata[i].start_month_2 %> - <%= seadata[i].end_month_2 %></td>
         <% } else if (seadata[i].start_month_1) { %>
