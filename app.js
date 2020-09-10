@@ -10,6 +10,7 @@ const monthToDate = require('./helpers/monthToDate'); // i.e. Changes January in
 const simpleTime = require('./helpers/simplify'); // Converts 24 hour time to 12 hour time & converts month to string
 const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement\
 const postQuery = require('./helpers/postQuery'); // Creates the POST SQL queries
+const newQuery = require('./helpers/newQuery');
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -54,18 +55,25 @@ app.get('/bugs', async (req, res) => {
 
 // Shows bugs specified to user's input for month
 app.post('/bugs', async(req, res) => {
-  const date = monthToDate(req.body["month"]);
-  const sqlQuery = postQuery('bugs', date);
+  const month = req.body["month"];
+  const sqlQuery = newQuery('bugs', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
-    let rows = await conn.query(sqlQuery);  
-    // Remove duplicate entries in the reoccuring fish
-    let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
-    simpleTime(rows[0]);
-    simpleTime(modify);
+    let rows = await conn.query(sqlQuery);
+    // Remove duplicate entries in the reoccuring bugs
+    simpleTime(rows);
+    let current = [];
+    for (let i = 0; i < rows.length; i++) {
+      const sm1 = rows[i].start_month_1;
+      const sm2 = rows[i].start_month_2;
+      if ((sm1 && sm1 === month) || (sm2 && sm2 === month)) {
+        current.push(rows[i]);
+      }
+    }
+    let modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b));
     res.render('./filters/bugsFilter', {
-      data: rows[0], 
+      data: current,
       curr: modify, 
       body_month: req.body["month"]
     });
@@ -74,7 +82,6 @@ app.post('/bugs', async(req, res) => {
   } finally {
     if (conn) return conn.release();
   }
-
 });
 
 // Shows all fish
@@ -95,18 +102,25 @@ app.get('/fish', async (req, res) => {
 
 // Shows fish that show up in user specified month
 app.post('/fish', async(req, res) => {
-  const date = monthToDate(req.body["month"]);
-  const sqlQuery = postQuery('fish', date);
+  const month = req.body["month"];
+  const sqlQuery = newQuery('fish', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);  
     // Remove duplicate entries in the reoccuring fish
-    let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
-    simpleTime(rows[0]);
-    simpleTime(modify);
+    simpleTime(rows);
+    let current = [];
+    for (let i = 0; i < rows.length; i++) {
+      const sm1 = rows[i].start_month_1;
+      const sm2 = rows[i].start_month_2;
+      if ((sm1 && sm1 === month) || (sm2 && sm2 === month)) {
+        current.push(rows[i]);
+      }
+    }
+    let modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b));
     res.render('./filters/fishFilter', {
-      data: rows[0], 
+      data: current, 
       curr: modify, 
       body_month: req.body["month"]
     });
@@ -135,18 +149,25 @@ app.get('/sea', async (req, res) => {
 
 // Shows sea creatures that show up in user specified month
 app.post('/sea', async(req, res) => {
-  const date = monthToDate(req.body["month"]);
-  const sqlQuery = postQuery('sea_creatures', date);
+  const month = req.body["month"];
+  const sqlQuery = newQuery('sea_creatures', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);  
     // Remove duplicate entries in the reoccuring fish
-    let modify = rows[1].filter(({id: a}) => !rows[0].some(({id: b}) => a === b));
-    simpleTime(rows[0]);
-    simpleTime(modify);
+    simpleTime(rows);
+    let current = [];
+    for (let i = 0; i < rows.length; i++) {
+      const sm1 = rows[i].start_month_1;
+      const sm2 = rows[i].start_month_2;
+      if ((sm1 && sm1 === month) || (sm2 && sm2 === month)) {
+        current.push(rows[i]);
+      }
+    }
+    const modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b)); 
     res.render('./filters/seaFilter', {
-      data: rows[0], 
+      data: current, 
       curr: modify, 
       body_month: req.body["month"]
     });
