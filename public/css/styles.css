@@ -90,3 +90,9 @@ input.month_submit, input.timezone_submit {
 	width: 80px;
 	height: 66px;
 }
+
+#blog_image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

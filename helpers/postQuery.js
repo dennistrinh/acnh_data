@@ -1,11 +1,39 @@
-module.exports = function(str, date) {
-  const select = 'SELECT * FROM ';
-  const newQuery = select + str + ' WHERE ' + '(start_month_1=\"2020' + date + ' \" OR start_month_2=\"2020' + date + ' \")';
-  const sqlBuildA = '((CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-  const sqlBuildB = '(CAST(\'2020' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR ';
-  const sqlBuildC = '(CAST(\'2021' + date + '\' AS DATE) BETWEEN start_month_1 AND end_month_1) OR ';
-  const sqlBuildD = '(CAST(\'2021' + date + '\' AS DATE) BETWEEN start_month_2 AND end_month_2) OR start_month_1 IS NULL);';
-  const oldQuery = select + str + ' WHERE ' + sqlBuildA + sqlBuildB + sqlBuildC + sqlBuildD;
-  const sqlQuery = newQuery + ';' + oldQuery;
-  return sqlQuery;
+module.exports = function(str, month) {
+  if (str === 'bugs') {
+    const sqlQuery = `
+      SELECT name, start_time_1, end_time_1,
+      start_time_2, end_time_2, start_month_1,
+      end_month_1, start_month_2, end_month_2,
+      location, price 
+      FROM ${str}
+      INNER JOIN ${str}_monthly_spawn
+      ON ${str}.id = ${str}_monthly_spawn.id
+      AND ${str}_monthly_spawn.${month} = 1;
+      `;
+    return sqlQuery;
+  } else if (str === 'fish') {
+    const sqlQuery = `
+      SELECT name, start_time_1, end_time_1,
+      start_time_2, end_time_2, start_month_1,
+      end_month_1, start_month_2, end_month_2,
+      location, price, shadow_size 
+      FROM ${str}
+      INNER JOIN ${str}_monthly_spawn
+      ON ${str}.id = ${str}_monthly_spawn.id
+      AND ${str}_monthly_spawn.${month} = 1;
+      `;
+    return sqlQuery;
+  } else {
+    const sqlQuery = `
+      SELECT name, start_time_1, end_time_1,
+      start_time_2, end_time_2, start_month_1,
+      end_month_1, start_month_2, end_month_2,
+      shadow_size, swim_speed, price 
+      FROM ${str}
+      INNER JOIN ${str}_monthly_spawn
+      ON ${str}.id = ${str}_monthly_spawn.id
+      AND ${str}_monthly_spawn.${month} = 1;
+      `;
+    return sqlQuery;
+  }
 }

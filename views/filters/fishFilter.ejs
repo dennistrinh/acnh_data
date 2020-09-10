@@ -90,26 +90,26 @@
         <th onclick="sortRows('oldFish', 5)">Price</th>
       </tr>
       <%- include("../functions/renderImages") %>
-      <% for (let i = 0; i < curr.length; i++) { %>
+      <% for (let i = 0; i < reoccur.length; i++) { %>
       <tr>
-        <td><%= curr[i].name %></td>
-        <td><img src="/images/fish/<%= renderImages(curr[i].name) %>" /></td>
-        <td><%= curr[i].location %> [<%= curr[i].shadow_size %>]</td>
-        <% if (curr[i].start_month_1 && curr[i].start_month_2) { %>
-        <td><%= curr[i].start_month_1 %> - <%= curr[i].end_month_1 %><br><%= curr[i].start_month_2 %> - <%= curr[i].end_month_2 %></td>
-        <% } else if (curr[i].start_month_1) { %>
-        <td><%= curr[i].start_month_1 %> - <%= curr[i].end_month_1 %>
+        <td><%= reoccur[i].name %></td>
+        <td><img src="/images/fish/<%= renderImages(reoccur[i].name) %>" /></td>
+        <td><%= reoccur[i].location %> [<%= reoccur[i].shadow_size %>]</td>
+        <% if (reoccur[i].start_month_1 && reoccur[i].start_month_2) { %>
+        <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %><br><%= reoccur[i].start_month_2 %> - <%= reoccur[i].end_month_2 %></td>
+        <% } else if (reoccur[i].start_month_1) { %>
+        <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %>
         <% } else { %>
         <td>All Year</td>
         <% } %>
-        <% if (curr[i].start_time_1 && curr[i].start_time_2) { %>
-        <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %><br><%= curr[i].start_time_2 %> - <%= curr[i].end_time_2 %></td>
-        <% } else if (curr[i].start_time_1) { %>
-        <td><%= curr[i].start_time_1 %> - <%= curr[i].end_time_1 %>
+        <% if (reoccur[i].start_time_1 && reoccur[i].start_time_2) { %>
+        <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %><br><%= reoccur[i].start_time_2 %> - <%= reoccur[i].end_time_2 %></td>
+        <% } else if (reoccur[i].start_time_1) { %>
+        <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %>
         <% } else { %>
         <td>All Day</td>
         <% } %>
-        <td><%= curr[i].price %></td>
+        <td><%= reoccur[i].price %></td>
       </tr>
       <% } %>
     </table>

@@ -10,7 +10,6 @@ const monthToDate = require('./helpers/monthToDate'); // i.e. Changes January in
 const simpleTime = require('./helpers/simplify'); // Converts 24 hour time to 12 hour time & converts month to string
 const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement\
 const postQuery = require('./helpers/postQuery'); // Creates the POST SQL queries
-const newQuery = require('./helpers/newQuery');
 const https = require('https');
 const fs = require('fs');
 const options = {
@@ -56,7 +55,7 @@ app.get('/bugs', async (req, res) => {
 // Shows bugs specified to user's input for month
 app.post('/bugs', async(req, res) => {
   const month = req.body["month"];
-  const sqlQuery = newQuery('bugs', month.toLowerCase());
+  const sqlQuery = postQuery('bugs', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
@@ -74,7 +73,7 @@ app.post('/bugs', async(req, res) => {
     let modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b));
     res.render('./filters/bugsFilter', {
       data: current,
-      curr: modify, 
+      reoccur: modify, 
       body_month: req.body["month"]
     });
   } catch(err) {
@@ -103,7 +102,7 @@ app.get('/fish', async (req, res) => {
 // Shows fish that show up in user specified month
 app.post('/fish', async(req, res) => {
   const month = req.body["month"];
-  const sqlQuery = newQuery('fish', month.toLowerCase());
+  const sqlQuery = postQuery('fish', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
@@ -121,7 +120,7 @@ app.post('/fish', async(req, res) => {
     let modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b));
     res.render('./filters/fishFilter', {
       data: current, 
-      curr: modify, 
+      reoccur: modify, 
       body_month: req.body["month"]
     });
   } catch(err) {
@@ -150,7 +149,7 @@ app.get('/sea', async (req, res) => {
 // Shows sea creatures that show up in user specified month
 app.post('/sea', async(req, res) => {
   const month = req.body["month"];
-  const sqlQuery = newQuery('sea_creatures', month.toLowerCase());
+  const sqlQuery = postQuery('sea_creatures', month.toLowerCase());
   let conn;
   try {
     conn = await mariadb.pool.getConnection();
@@ -168,7 +167,7 @@ app.post('/sea', async(req, res) => {
     const modify = rows.filter(({name: a}) => !current.some(({name: b}) => a === b)); 
     res.render('./filters/seaFilter', {
       data: current, 
-      curr: modify, 
+      reoccur: modify, 
       body_month: req.body["month"]
     });
   } catch(err) {
