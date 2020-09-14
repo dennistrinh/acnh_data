@@ -7,7 +7,7 @@ const mariadb = require('./config.js');
 const port = 9000;
 const https_port = 9001;
 const monthToDate = require('./helpers/monthToDate'); // i.e. Changes January into "2020-01-01"
-const simpleTime = require('./helpers/simplify'); // Converts 24 hour time to 12 hour time & converts month to string
+const simplify = require('./helpers/simplify'); // Converts 24 hour time to 12 hour time & converts month to string
 const currentDate = require('./helpers/currentDate'); // Gets the current date for the client and creates a SQL statement\
 const postQuery = require('./helpers/postQuery'); // Creates the POST SQL queries
 const https = require('https');
@@ -43,7 +43,7 @@ app.get('/bugs', async (req, res) => {
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sql);
-    simpleTime(rows);
+    simplify(rows);
     res.render('bugs', {data: rows});
   } catch(err) {
     throw err;
@@ -61,7 +61,7 @@ app.post('/bugs', async(req, res) => {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);
     // Remove duplicate entries in the reoccuring bugs
-    simpleTime(rows);
+    simplify(rows);
     let current = [];
     for (let i = 0; i < rows.length; i++) {
       const sm1 = rows[i].start_month_1;
@@ -90,7 +90,7 @@ app.get('/fish', async (req, res) => {
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sql);
-    simpleTime(rows);
+    simplify(rows);
     res.render('fish', {data: rows});
   } catch(err) {
     throw err;
@@ -108,7 +108,7 @@ app.post('/fish', async(req, res) => {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);  
     // Remove duplicate entries in the reoccuring fish
-    simpleTime(rows);
+    simplify(rows);
     let current = [];
     for (let i = 0; i < rows.length; i++) {
       const sm1 = rows[i].start_month_1;
@@ -137,7 +137,7 @@ app.get('/sea', async (req, res) => {
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sql);
-    simpleTime(rows);
+    simplify(rows);
     res.render('sea_creatures', {data: rows});
   } catch(err) {
     throw err;
@@ -155,7 +155,7 @@ app.post('/sea', async(req, res) => {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);  
     // Remove duplicate entries in the reoccuring fish
-    simpleTime(rows);
+    simplify(rows);
     let current = [];
     for (let i = 0; i < rows.length; i++) {
       const sm1 = rows[i].start_month_1;
@@ -189,9 +189,9 @@ app.get('/active', async(req, res) => {
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);
-    simpleTime(rows[0]);
-    simpleTime(rows[1]);
-    simpleTime(rows[2]);
+    simplify(rows[0]);
+    simplify(rows[1]);
+    simplify(rows[2]);
     res.render('./active', {
       currDate: date, 
       currTime: time, 
@@ -217,9 +217,9 @@ app.post('/active', async(req, res) => {
   try {
     conn = await mariadb.pool.getConnection();
     let rows = await conn.query(sqlQuery);
-    simpleTime(rows[0]);
-    simpleTime(rows[1]);
-    simpleTime(rows[2]);
+    simplify(rows[0]);
+    simplify(rows[1]);
+    simplify(rows[2]);
     res.render('./filters/activeFilter', {
       currDate: date, 
       currTime: time, 

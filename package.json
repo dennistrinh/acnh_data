@@ -1,6 +1,6 @@
 {
   "name": "acnh",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "\"Database for insects/fish in Animal Crossing: New Horizons\"",
   "main": "app.js",
   "repository": "https://github.com/dennistrinh/acnh_data",

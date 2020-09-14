@@ -50,7 +50,6 @@
       <input class="timezone_submit" type="submit" value="Apply" formaction="/active">
     </form>
   </div>
-
   </div>
   <div class="table_container">
     <h1 class="table_headers">Bugs Currently Active: <%= currDate %> (<%= currTime %> UTC+0)</h1>
@@ -89,7 +88,7 @@
     </table>
   </div>
   <div class="table_container">
-    <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC)</h1>
+    <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC+0)</h1>
     <table id="fish">
       <tr>
         <th onclick="sortRows('fish', 0)">Name</th>
@@ -125,7 +124,7 @@
     </table>
   </div>
   <div class="table_container">
-    <h1 class="table_headers">Sea Creatures Currently Active: <%= currDate %> (<%= currTime %> UTC)</h1>
+    <h1 class="table_headers">Sea Creatures Currently Active: <%= currDate %> (<%= currTime %> UTC+0)</h1>
     <table id="sea">
       <tr>
         <th onclick="sortRows('sea', 0)">Name</th>

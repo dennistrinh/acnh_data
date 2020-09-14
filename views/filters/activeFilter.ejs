@@ -54,9 +54,9 @@
   <div class="table_container">
     <h1 class="table_headers">Bugs Currently Active: <%= currDate %> (<%= currTime %> UTC
     <% if (Number(zone) >= 0) { %>
-    +<%= zone %>)
+      UTC+<%= zone %>)
     <% } else { %>
-    <%= zone %>)
+      UTC<%= zone %>)
     <% } %>
     </h1>
     <table id="bugs">
@@ -96,9 +96,9 @@
   <div class="table_container">
     <h1 class="table_headers">Fish Currently Active: <%= currDate %> (<%= currTime %> UTC
     <% if (Number(zone) >= 0) { %>
-    +<%= zone %>)
+      UTC+<%= zone %>)
     <% } else { %>
-    <%= zone %>)
+      UTC<%= zone %>)
     <% } %>
     </h1>
     <table id="fish">
@@ -136,11 +136,11 @@
     </table>
   </div>
   <div class="table_container">
-    <h1 class="table_headers">Sea Creatures Currently Active: <%= currDate %> (<%= currTime %> UTC
+    <h1 class="table_headers">Sea Creatures Currently Active: <%= currDate %> (<%= currTime %>
     <% if (Number(zone) >= 0) { %>
-    +<%= zone %>)
+      UTC+<%= zone %>)
     <% } else { %>
-    <%= zone %>)
+      UTC<%= zone %>)
     <% } %>
     </h1>
     <table id="sea">
