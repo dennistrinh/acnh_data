@@ -1,3 +1,6 @@
+## 1.2.2
+---
+- Initial table filter functionality
 ## 1.2.1
 ---
 - Active queries changed to reflect new database changes

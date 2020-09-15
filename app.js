@@ -53,7 +53,7 @@ app.get('/bugs', async (req, res) => {
 });
 
 // Shows bugs specified to user's input for month
-app.post('/bugs', async(req, res) => {
+app.post('/bugs', async (req, res) => {
   const month = req.body["month"];
   const sqlQuery = postQuery('bugs', month.toLowerCase());
   let conn;
@@ -100,7 +100,7 @@ app.get('/fish', async (req, res) => {
 });
 
 // Shows fish that show up in user specified month
-app.post('/fish', async(req, res) => {
+app.post('/fish', async (req, res) => {
   const month = req.body["month"];
   const sqlQuery = postQuery('fish', month.toLowerCase());
   let conn;
@@ -147,7 +147,7 @@ app.get('/sea', async (req, res) => {
 });
 
 // Shows sea creatures that show up in user specified month
-app.post('/sea', async(req, res) => {
+app.post('/sea', async (req, res) => {
   const month = req.body["month"];
   const sqlQuery = postQuery('sea_creatures', month.toLowerCase());
   let conn;
@@ -180,7 +180,7 @@ app.post('/sea', async(req, res) => {
 
 // Shows all active bugs, fish, and sea creatures 
 // for current date/time in UTC
-app.get('/active', async(req, res) => {
+app.get('/active', async (req, res) => {
   const data = currentDate();
   const sqlQuery = data[0];
   const date = data[1];
@@ -208,7 +208,7 @@ app.get('/active', async(req, res) => {
 
 // Shows all active bugs, fish, and sea creatures
 // with specified time zone
-app.post('/active', async(req, res) => {
+app.post('/active', async (req, res) => {
   const timezone = req.body["timezone"];
   const data = currentDate(timezone);
   const sqlQuery = data[0];
