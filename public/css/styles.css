@@ -1,5 +1,10 @@
+*, ::before, ::after {
+	box-sizing: inherit;
+}
+
 html {
 	font-size: 62.5%;
+	box-sizing: border-box;
 }
 
 body {
@@ -28,7 +33,7 @@ th {
 	width: 50%;
 	margin: 0 auto;
 	padding: 0.25em;
-	overflow: hidden;
+	text-align: center;
 }
 
 .menu {
@@ -45,7 +50,6 @@ li.menu_button {
 	display: block;
 	padding: 0.5em;
 	margin: 0.25em;
-	text-align: center;
 	float: left;
 }
 
@@ -59,7 +63,7 @@ a.menu_link {
 	color: #000000;
 }
 
-h3, p, form {
+h3, p {
 	text-align: center;
 }
 
@@ -76,6 +80,10 @@ input.month_submit, input.timezone_submit {
 	margin-bottom: 2em;
 }
 
+.table_img {
+	max-width: 64px;
+	max-height: 64px;
+}
 
 .table_headers {
 	text-align: center;
@@ -87,8 +95,8 @@ input.month_submit, input.timezone_submit {
 }
 
 #octocat {
-	width: 80px;
-	height: 66px;
+	max-width: 80px;
+	max-height: 66px;
 }
 
 #blog_image {
@@ -100,5 +108,5 @@ input.month_submit, input.timezone_submit {
 #userInput {
 	padding: 0.5em;
 	margin: 0.25em;
-	width: 80%;
+	width: 50%;
 }

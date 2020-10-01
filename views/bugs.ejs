@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="All northern hemisphere bugs in Animal Crossing: New Horizons">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Animal Crossing New Horizons Bugs</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
@@ -14,15 +16,15 @@
       <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
       <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
       <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</li>
+      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
       <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
       <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
     </ul>
   </div>
   <div class="menu_container">
     <form method="POST">
-      <label for="months" class="month_label">Month</label>
-      <select name="month" class="month_select">
+      <label id="months" class="month_label">Month</label>
+      <select name="month" class="month_select" aria-labelledby="months">
         <option value="January">January</option>
 	<option value="February">February</option>
 	<option value="March">March</option>
@@ -36,18 +38,18 @@
 	<option value="November">November</option>
 	<option value="December">December</option>
       </select>
-      <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
+      <input class="month_submit" type="submit" value="Search!" formaction="/bugs">
     </form>
   </div>
   <div class="menu_container">
-    <select id="option" class="month_select">
+    <label id="filter" for="userInput" class="month_label">Filters</label>
+    <select id="option" class="month_select" aria-labelledby="filter">
       <option value=0>Name</option>
       <option value=2>Location</option>
-      <option value=3>Months Available</option>
       <option value=4>Time Found</option>
       <option value=5>Price</option>
     </select>
-    <input type="text" id="userInput" placeholder="Search using filter above!" onkeyup="tableFilter('bugs')"> 
+    <input type="text" id="userInput" placeholder="Search using filter options!" onkeyup="tableFilter('bugs')"> 
   </div>
   <div class="table_container">
     <h1 class="table_headers">All Bugs in Animal Crossing New Horizons</h1>
@@ -64,7 +66,7 @@
       <% for (let i = 0; i < data.length; i++) { %>
       <tr>
         <td><%= data[i].name %></td>
-        <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
+        <td><img class="table_img" src="/images/bugs/<%= renderImages(data[i].name) %>" alt="<%= renderImages(data[i].name) %>" /></td>
         <td><%= data[i].location %></td>
         <% if (data[i].start_month_1 && data[i].start_month_2) { %>
         <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>

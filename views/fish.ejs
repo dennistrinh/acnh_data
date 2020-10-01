@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="All northern hemisphere fish in Animal Crossing: New Horizons">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Animal Crossing New Horizons Fish</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
   <script type="text/javascript" src="/func/sortRows.js"></script>
+  <script type="text/javascript" src="/func/tableFilter.js"></script>
 </head>
 <body>
   <div class="menu_container">
@@ -37,6 +40,15 @@
       </select>
       <input class="month_submit" type="submit" value="Filter" formaction="/fish">
     </form>
+  </div>
+  <div class="menu_container">
+    <select id="option" class="month_select">
+      <option value=0>Name</option>
+      <option value=2>Location</option>
+      <option value=4>Time Found</option>
+      <option value=5>Price</option>
+    </select>
+    <input type="text" id="userInput" placeholder="Search using filter above!" onkeyup="tableFilter('fish')"> 
   </div>
   <div class="table_container">
     <h1 class="table_headers">All Fish in Animal Crossing New Horizons</h1>
