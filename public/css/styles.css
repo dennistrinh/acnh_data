@@ -14,15 +14,15 @@ body {
 }
 
 table {
-	border-style:solid;
-	margin-left:10%;
-	margin-right:10%;
+	border-style: solid;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 th, td {
-	border-style:solid;
-	text-align:center;
-	width:10%;
+	border-style: solid;
+	text-align: center;
+	width: 7.5%;
 }
 
 th {
