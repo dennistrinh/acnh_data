@@ -1,3 +1,7 @@
+## 1.3.0
+---
+- Active page now only does local time or GMT rather than timezone conversion
+- More mobile friendly/widths fixed
 ## 1.2.2
 ---
 - Initial table filter functionality

@@ -1,118 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Animal Crossing New Horizons Bugs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css" type="text/css">
-  <script type="text/javascript" src="/func/sortRows.js"></script>
-</head>
-<body>
-  <div class="menu_container">
-    <ul class="menu">
-      <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
-      <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
-      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</li>
-      <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
-    </ul>
-  </div>
-  <div class="menu_container">
-    <form method="POST">
-      <label for="months" class="month_label">Month</label>
-      <select name="month" class="month_select">
-        <option value="January">January</option>
-	<option value="February">February</option>
-	<option value="March">March</option>
-	<option value="April">April</option>
-	<option value="May">May</option>
-	<option value="June">June</option>
-	<option value="July">July</option>
-	<option value="August">August</option>
-	<option value="September">September</option>
-	<option value="October">October</option>
-	<option value="November">November</option>
-	<option value="December">December</option>
-      </select>
-      <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
-    </form>
-  </div>
-  <div class="table_container">
-    <h1 class="table_headers">New Bugs in <%= body_month %></h1>
-    <% if (data.length == 0) { %>
-    <h2 class="table_headers">Nothing new this month!</h2>
-    <% } else { %>
-    <table id="newBugs">
-      <tr>
-        <th onclick="sortRows('newBugs', 0)">Name</th>
-        <th onclick="sortRows('newBugs', 1)">Image</th>
-        <th onclick="sortRows('newBugs', 2)">Location</th>
-        <th onclick="sortRows('newBugs', 3)">Months Available</th>
-        <th onclick="sortRows('newBugs', 4)">Time Found</th>
-        <th onclick="sortRows('newBugs', 5)">Price</th>
-      </tr>
-      <%- include("../functions/renderImages") %>
-      <% for (let i = 0; i < data.length; i++) { %>
-      <tr>
-        <td><%= data[i].name %></td>
-        <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
-        <td><%= data[i].location %></td>
-        <% if (data[i].start_month_1 && data[i].start_month_2) { %>
-        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
-        <% } else if (data[i].start_month_1) { %>
-        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %>
-        <% } else { %>
-        <td>All Year</td>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Northern Hemisphere bugs of a specified month in ACNH">
+    <meta name="viewport" content="width=device-width">
+    <title>Animal Crossing New Horizons Bugs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/tables.css" type="text/css">
+    <script type="text/javascript" src="/func/sortRows.js"></script>
+  </head>
+  <body>
+    <div class="menu_container">
+      <ul class="menu">
+        <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
+        <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
+        <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+        <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</li>
+        <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
+        <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
+      </ul>
+    </div>
+    <div class="menu_container">
+      <form method="POST">
+        <label for="months" class="month_label">Month</label>
+        <select name="month" class="month_select">
+          <option value="January">January</option>
+  	<option value="February">February</option>
+  	<option value="March">March</option>
+  	<option value="April">April</option>
+  	<option value="May">May</option>
+  	<option value="June">June</option>
+  	<option value="July">July</option>
+  	<option value="August">August</option>
+  	<option value="September">September</option>
+  	<option value="October">October</option>
+  	<option value="November">November</option>
+  	<option value="December">December</option>
+        </select>
+        <input class="month_submit" type="submit" value="Filter" formaction="/bugs">
+      </form>
+    </div>
+    <div class="table_container">
+      <h1 class="table_headers">New Bugs in <%= body_month %></h1>
+      <% if (data.length == 0) { %>
+      <h2 class="table_headers">Nothing new this month!</h2>
+      <% } else { %>
+      <table id="newBugs">
+        <tr>
+          <th onclick="sortRows('newBugs', 0)">Name</th>
+          <th onclick="sortRows('newBugs', 1)">Image</th>
+          <th onclick="sortRows('newBugs', 2)">Location</th>
+          <th onclick="sortRows('newBugs', 3)">Months Available</th>
+          <th onclick="sortRows('newBugs', 4)">Time Found</th>
+          <th onclick="sortRows('newBugs', 5)">Price</th>
+        </tr>
+        <%- include("../functions/renderImages") %>
+        <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].name %></td>
+          <td><img src="/images/bugs/<%= renderImages(data[i].name) %>" /></td>
+          <td><%= data[i].location %></td>
+          <% if (data[i].start_month_1 && data[i].start_month_2) { %>
+          <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
+          <% } else if (data[i].start_month_1) { %>
+          <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %>
+          <% } else { %>
+          <td>All Year</td>
+          <% } %>
+          <% if (data[i].start_time_1 && data[i].start_time_2) { %>
+          <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
+          <% } else if (data[i].start_time_1) { %>
+          <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
+          <% } else { %>
+          <td>All Day</td>
+          <% } %>
+          <td><%= data[i].price %></td>
+        </tr>
         <% } %>
-        <% if (data[i].start_time_1 && data[i].start_time_2) { %>
-        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
-        <% } else if (data[i].start_time_1) { %>
-        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
-        <% } else { %>
-        <td>All Day</td>
-        <% } %>
-        <td><%= data[i].price %></td>
-      </tr>
+      </table>
       <% } %>
-    </table>
-    <% } %>
-  </div>
-  <div class="table_container">
-    <h1 class="table_headers">Reoccuring Bugs (from other months)</h1>
-    <table id="oldBugs">
-      <tr>
-        <th onclick="sortRows('oldBugs', 0)">Name</th>
-        <th onclick="sortRows('oldBugs', 1)">Image</th>
-        <th onclick="sortRows('oldBugs', 2)">Location</th>
-        <th onclick="sortRows('oldBugs', 3)">Months Available</th>
-        <th onclick="sortRows('oldBugs', 4)">Time Found</th>
-        <th onclick="sortRows('oldBugs', 5)">Price</th>
-      </tr>
-      <%- include("../functions/renderImages") %>
-      <% for (let i = 0; i < reoccur.length; i++) { %>
-      <tr>
-        <td><%= reoccur[i].name %></td>
-        <td><img src="/images/bugs/<%= renderImages(reoccur[i].name) %>" /></td>
-        <td><%= reoccur[i].location %></td>
-        <% if (reoccur[i].start_month_1 && reoccur[i].start_month_2) { %>
-        <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %><br><%= reoccur[i].start_month_2 %> - <%= reoccur[i].end_month_2 %></td>
-        <% } else if (reoccur[i].start_month_1) { %>
-        <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %>
-        <% } else { %>
-        <td>All Year</td>
+    </div>
+    <div class="table_container">
+      <h1 class="table_headers">Reoccuring Bugs (from other months)</h1>
+      <table id="oldBugs">
+        <tr>
+          <th onclick="sortRows('oldBugs', 0)">Name</th>
+          <th onclick="sortRows('oldBugs', 1)">Image</th>
+          <th onclick="sortRows('oldBugs', 2)">Location</th>
+          <th onclick="sortRows('oldBugs', 3)">Months Available</th>
+          <th onclick="sortRows('oldBugs', 4)">Time Found</th>
+          <th onclick="sortRows('oldBugs', 5)">Price</th>
+        </tr>
+        <%- include("../functions/renderImages") %>
+        <% for (let i = 0; i < reoccur.length; i++) { %>
+        <tr>
+          <td><%= reoccur[i].name %></td>
+          <td><img src="/images/bugs/<%= renderImages(reoccur[i].name) %>" /></td>
+          <td><%= reoccur[i].location %></td>
+          <% if (reoccur[i].start_month_1 && reoccur[i].start_month_2) { %>
+          <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %><br><%= reoccur[i].start_month_2 %> - <%= reoccur[i].end_month_2 %></td>
+          <% } else if (reoccur[i].start_month_1) { %>
+          <td><%= reoccur[i].start_month_1 %> - <%= reoccur[i].end_month_1 %>
+          <% } else { %>
+          <td>All Year</td>
+          <% } %>
+          <% if (reoccur[i].start_time_1 && reoccur[i].start_time_2) { %>
+          <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %><br><%= reoccur[i].start_time_2 %> - <%= reoccur[i].end_time_2 %></td>
+          <% } else if (reoccur[i].start_time_1) { %>
+          <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %>
+          <% } else { %>
+          <td>All Day</td>
+          <% } %>
+          <td><%= reoccur[i].price %></td>
+        </tr>
         <% } %>
-        <% if (reoccur[i].start_time_1 && reoccur[i].start_time_2) { %>
-        <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %><br><%= reoccur[i].start_time_2 %> - <%= reoccur[i].end_time_2 %></td>
-        <% } else if (reoccur[i].start_time_1) { %>
-        <td><%= reoccur[i].start_time_1 %> - <%= reoccur[i].end_time_1 %>
-        <% } else { %>
-        <td>All Day</td>
-        <% } %>
-        <td><%= reoccur[i].price %></td>
-      </tr>
-      <% } %>
-    </table>
-  </div>
-</body>
+      </table>
+    </div>
+  </body>
 </html>

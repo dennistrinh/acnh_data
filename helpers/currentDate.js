@@ -71,26 +71,17 @@ function queryCreator(month, time) {
 // Grabs the current date and formats the SQL
 // query to be sent to the database
 module.exports = function(timezone) {
-  const date_now = Date.now();
-  const date_obj = new Date(date_now);
+  let date_obj = new Date();
+  if (timezone) {
+    date_obj = new Date(Date.now() - (timezone * 1000 * 60));
+  }
   const day = dateFormater(date_obj.getDate());
   const month = dateFormater(date_obj.getMonth() + 1);
   const year = date_obj.getFullYear();
-  let hours = dateFormater(date_obj.getHours());
-  if (timezone) {
-    const zone = Number(timezone);
-    if (Number(hours) + zone >= 24) {
-    	hours = String(Number(hours) - 24 + zone);
-    } else if (Number(hours) + zone < 0) {
-    	hours = String(Number(hours) + 24 + zone);
-    } else {
-    	hours = String(Number(hours) + zone);
-    }  
-  }
-  hours = dateFormater(hours);
+  const hours = dateFormater(date_obj.getHours());
   const mins = dateFormater(date_obj.getMinutes());
   const secs = dateFormater(date_obj.getSeconds());
-  const date = `${year}-${month}-${day}`;
+  const date = `${month}-${day}-${year}`;
   const time = `${hours}:${mins}:${secs}`;
   const monthString = (date_obj.toLocaleString('default', { month: 'long' })).toLowerCase();
   const sqlQuery = queryCreator(monthString, time);

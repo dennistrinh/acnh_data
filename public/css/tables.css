@@ -1,16 +1,9 @@
 *, ::before, ::after {
-	box-sizing: inherit;
-}
-
-html {
-	font-size: 62.5%;
 	box-sizing: border-box;
 }
 
 body {
-	font: 2em 'Open Sans', sans-serif;
-	background-color: #FFFFFF;
-	color: #000000;
+	font: 20px 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 table {
@@ -41,8 +34,6 @@ th {
 	align-items: center;
 	justify-content: center;
 	padding: inherit;
-	text-align: center;
-	overflow: inherit;
 }
 
 li.menu_button {
@@ -60,11 +51,7 @@ li.menu_button:hover {
 a.menu_link {
 	display: block;
 	text-decoration: none;
-	color: #000000;
-}
-
-h3, p {
-	text-align: center;
+	color: #000000
 }
 
 ol {
@@ -85,13 +72,12 @@ input.month_submit, input.timezone_submit {
 	max-height: 64px;
 }
 
-.table_headers {
-	text-align: center;
-}
-
 .table_container {
-	margin: 0.5em;
+	width: 75%;
+	display: block;
+	margin: 0 auto;
 	padding: 0.5em;
+	text-align: center;
 }
 
 #octocat {
@@ -99,14 +85,26 @@ input.month_submit, input.timezone_submit {
 	max-height: 66px;
 }
 
-#blog_image {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 #userInput {
 	padding: 0.5em;
 	margin: 0.25em;
 	width: 50%;
+}
+
+@media only screen and (max-width: 620px) {
+	body {
+		font-size: 1.5em;
+	}
+	.menu_container {
+		width: 100%;
+		margin-left: 75%;
+		margin-right: 50%;
+	}
+	.table_container {
+		width: 250%;
+	}
+	table {
+		display: inline-block;
+		
+	}
 }
