@@ -1,0 +1,36 @@
+#menu_container {
+	width: 100%;
+}
+
+#menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.menu_button {
+	display: inline-block;
+	list-style-type: none;
+	padding: 0.5em;
+	margin: 0.25em;
+}
+
+.menu_button:hover {
+	background-color: #26E9D6;
+}
+
+.menu_link {
+	text-decoration: none;
+	color: #000000;
+}
+
+#octocat {
+	max-width: 80px;
+	max-height: 66px;
+}
+
+@media only screen and (max-width: 620px) {
+	#menu_container {
+		margin: 0 50%;
+	}
+}

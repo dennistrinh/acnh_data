@@ -6,360 +6,366 @@
   <meta name="viewport" content="width=device-width">
   <title>Welcome!</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/navbar.css" type="text/css">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
+  <script src="/func/scroll.js" type="text/javascript"></script>
 </head>
 <body>
-  <div class="menu_container">
-    <ul class="menu">
-      <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
-      <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
-      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
-      <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
-    </ul>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">March 11th 2020: Back at it!</h2>
-    <p> It's been a while. I've been a bit busy with personal and
-	work obligations (covid vaccinations are wild), but finally
-	have some downtime again to work on some projects. I'm
-	refamiliarizing myself with the code on this project and cleaning
-	up a bit. Boy, this project is quite a hot mess, but at the same time
-	I've learned a lot from piling onto this project.
-	I cleaned up the page a bit, so it doesn't have wonky widths. I
-	sort of got the page viewable on mobile as well, but the font is
-	a bit scuffed (will fix later). I redid the active page as well:
-	instead of having the user input their timezone manually, the user
-	just presses a button and their local time will show. The manual
-	input was rather unreliable since it doesn't account for daylight
-	savings. My plans going forward are to make the website more
-	presentable. 
-    </p>
-  </div> 
-
-  <div class="blog_container">
-    <h2 class="blog_title">October 1st, 2020: Moving things around</h2>
-    <p> I'm moving stuff around and this blog page
-	will probably end up moving to my portfolio page.
-	The Animal Crossing project is probably going to
-	be on a different domain and I'll be keeping this
-	domain as my portfolio page.
-	<br /><br />
-	In terms of the Animal Crossing data, I've
-	been working on layouts and cleaning up the CSS.
-	Writing vanilla CSS is a lot more work than I'd imagined
-	it be, but at least I'm learning quite a fair bit. In
-	hindsight, it'd probably be best to use a framework moving
-	forward. A new feature I intend to implement next is user
-	logins. I'm thinking of a page where the user can add items
-	from the three databases into a personalized notebook of sorts.
-    </p>
-  </div> 
-  <div class="blog_container">
-    <h2 class="blog_title">September 21st, 2020: Filters</h2>
-    <p> A rough implementation of filters is up for each
-	of the pages. I've been working on brushing up
-	the CSS of the pages and it still needs a lot of
-	work. In terms of the filters, it can filter
-	every field, but for time it can only filter
-	the start and end times. I'm probably going to
-	remove that field and change it to match the
-	month filter.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">September 13th, 2020: Active page is up</h2>
-    <p> I got around to changing the active queries
-        to reflect the new changes in the SQL tables.
-        At the moment, I have them as giant template strings,
-	but might clean them up more elegantly later. Speaking
-	of template strings, I've read in the node.js/js best
-	practices it is better to concatenate strings using
-	templates rather than '+' as I have been doing. As
-	a result, I've been slowly updating my code to reflect
-	this. With the new table resolved, my next plans
-	are to add filtering via search box and expanding on
-	the frontend aspects (i.e. resizing windows doesn't
-	screw up the table/menu). In additon, I've added a changelog
-	to help me keep track of changes.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">September 9th, 2020: It's been a while.</h2>
-    <p> The sky is orange outside. First time I've
-	seen anything like it in California. Anywho,
-	my first set of interviews are done and I'm
-	back to tinkering away at this program. I've
-	been looking at Mozilla's style guide and
-	realized I haven't been using string templates.
-	I've been mostly using '+' to do my concatenation,
-	which apparently is frowned upon, so I've been cleaning
-	that up. <br /><br />
-	I found a better solution for recording the monthly spawns
-	of the various creatures of Animal Crossing. I split the spawns
-	into their own table and recorded each month as a boolean value.
-	In the querying, I would just look at the table and it allows for
-	instant access to which months something spawns in. Originally my
-	naive solution was to store spawns as a date:
-	<img src="images/blog/month_problem.jpg" alt="Problem Table" title="Problem" class="blog_image"></img>
-	This results in an obvious problem: if the year changes, I would have
-	to manually update every single entry to the next year.
-	My new solution is to have a new table with every month
-	and query months looking at this new table:
-	<img src="images/blog/new_table.jpg" alt="New Table" title="New Table" class="blog_image"></img>
-	I have a bit more cleaning up todo as well as some tweaking I need
-	to do in the active tab to reflect these new table changes.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">August 5th, 2020: Cleaning Up</h2>
-    <p> These past few weeks I've been working on a bit of
-	interview practice, so I haven't had much time to add
-	features. For the most part, I've just been cleaning up
-	my tests and code. The certbot certificate also expires soon,
-	so I should probably get around to renewing that too. In terms
-	of learning Go, I've been working through the tutorial and it's
-	pretty enjoyable. I like how the tutorial goes in-depth about
-	design choices in the language. More updates to come soon to this
-	page.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">July 22nd, 2020: Deep Dive</h2>
-    <p> Fireworks have finally stopped.
-	Sea Creatures have been added to the database.
-	I also found a bug while reorganizing some of
-	my code. Due to the way my SQL schema records
-	date ranges, if certain things appeared in 2021,
-	then they wouldn't show up at all on the webpage.
-	It's possible I might have to change the way that
-	data is represented on the SQL table. Instead of having
-	"2020-05-01" to "2020-06-30" for example, I might have
-	to record true/false booleans for all the months that
-	the creatures show up. For now, I have a simple workaround
-	that checks for both 2020 and 2021. <br /><br /> 
-	As a side note, I've been working through the Golang tutorial.
-	It uses some interesting conventions like short variable declaration (:=)
-	and also the way they handle type declarations. The type always comes after
-	the variable in Go. As stated from the docs, the type is declared after the
-	variable for readability's sake. For example, you can always identify the
-	name and return types for a function no matter how nested it becomes.
-	See <a href='https://blog.golang.org/declaration-syntax'>declaration syntax</a>.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">July 13th, 2020: Time zones</h2>
-    <p> Fireworks are still going strong at night.
-	At long last, the active page has been fixed. It
-	seems the three conditionals I added to the SQL
-	(see last blog post) query accounts for all situations
-	that was causing data to be missing from the cells.
-	In addition, you can now filter by timezones! It was fairly
-	straightforward to implement since it builds upon my
-	military time converter. I would have the user select their time
-	zone and add on whatever UTC value they chose to the current
-	UTC+0 time. i.e. If the user chose UTC-7, then the program takes
-	the current time, subtracts it by 7, then builds the query.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">July 8th, 2020: Surely you Jest</h2>
-    <p> The fireworks haven't stopped since July 4th.
-      One of my neighbors seems to have stockpiled
-      a decades worth of them and he goes at it every night.
-      Anywho, I've been dabbling with testing libraries like
-      Jest and Selenium and they're pretty friendly to use.
-      Selenium took a while to wrap my head around since
-      you have to build the driver first and use await calls
-      to wait for the driver to pull info from the page you're
-      testing. I just have a basic test for the bugs page right
-      now, but will expand it as I go. <br /><br />
-      In terms of functionality, I started working on
-      the timezone converter; however, there's an unresolved bug I have to
-      resolve first: if the current time falls between a certain range (11 PM
-      to 5 AM), then my SQL queries don't properly handle the day
-      change. As a result, the only data that shows up are the bugs/fish
-      that are available all day. My current query doesn't account for changes
-      in a new day, so it gets confused when I say 'SELECT * FROM 'bugs' WHERE
-      currentTime IS BETWEEN start_time AND end_time'. One workaround I think
-      might work is to a negation so not between the two times. Another solution
-      could be to set 3 conditionals:
-     </p>
-      <ol>
-        <li>start < end AND currentTime BETWEEN start and end (the original query)</li>
-        <li>end < start AND currentTime < start AND currentTime < end (covers day changes)</li>
-        <li>end < start AND currentTime > start (covers period between 11 PM and midnight)</li>
-      </ol>
-    <p>
-      I'll play with both ideas tomorrow and see where that takes me.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">July 1st, 2020: Cleaning Up & Looking Into Testing</h2>
-    <p> Happy July! I cleaned up some of the code into separate
-	helper functions. In addition, months are now visible on
-	the tables as well. I merged the shadow size column with
-	the location column for fish to keep the table size consistent
-	with the bugs table. Adjusting the CSS and resizing the tables
-	fixed the bug where some tables would show up smaller. I've
-	been looking at some <a href="https://github.com/goldbergyoni/nodebestpractices">
-	node best practices</a> and I have to say I have a lot of work
-	to do. In particular, testing has been rather lacking in this
-	project and in hindsight, I should have designed them as I
-	was building the program. I've been looking into Jest and Selenium
-	to do some basic tests to start off.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">June 26th, 2020: Time Complexities</h2>
-    <p> I refactored some of the code for reusability
-	sake. The conversion of 24 hour time to 12 hour
-	time was copied and pasted in every route call, so
-	I cleaned it up into a separate function. I readjusted
-	the times in the active categories as well as there was
-	an error in how I wrote my SQL query. The statement
-	was supposed to check times between the starting time
-	and the ending time, but instead it was written as
-	check times less than the starting time and less than
-	the end time. My oversight is not looking into testing earlier.
-	Manually looking at the data to see if it's correct is fairly
-	ineffective. There's another bug I suspect will arise from this
-	correction. For example, say a certain fish is only active from
-	11 pm (23:00) to 8 am. The current time is 23:15:00, so it passes
-	the inequality for being greater than the start time of 11 pm. However,
-	when it goes to check if it's less than the end time, the inequality fails
-	since 23:15 is technically greater than 8 AM. A fix might be to combine the
-	times and date into a datetime element. Also, this is a good time to
-	look into testing tools in npm.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">June 22nd, 2020: Active Bugs & Fish</h2>
-    <p> After fiddling with uncooperative SQL queries,
-    	I was able to create a table showing the currently
-	active fishes and bugs. It currently uses UTC timezone
-	as a result of the Date.now() functionality of Javascript,
-	but I'm thinking of adding a timezone option for the user.
-	The git repo is also available for viewing as well.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">June 19th, 2020: Refactoring</h2>
-    <p> I've been exporting code bits into their own modules
-    	for organization purposes. The API requests code needs
-	a bit of refactoring as well. The times have been
-	"demilitarized" and switched to AM/PM format. It
-	wasn't too bad of a fix. I just had to subtract 12
-	from the database query if the time exceeded 12 and stick
-	a PM in front of it. New filters are coming soon.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">June 16th, 2020: Unnecessary complexity</h2>
-    <p> After doing some experimentation and research with React,
-    	I feel like I'm making the application needlessly complicated
-	for the sake of including more technologies. Unless I plan to
-	make an API out of my database that works with CRUD (create,
-	read, update, and delete), I feel as if EJS is enough for the
-	time being. If anything, I should split this blog with the data
-	website and change this into a React App. Regardless, I learned
-	quite a bit about React. It's pretty neat how you can just package
-	all of your HTML into reusuable components. In regards to this website,
-	I still need to adjust the CSS on the tables. All the tables
-	display properly with correct page sizing, but the Dab (October Fish)
-	is strangely offset.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">June 11th, 2020: Back at it</h2>
-    <p> Due to some work obligations, I've been away for a bit.
-    	Doing some research for the moment learning basic React.
-	Tomorrow, I'll start breaking apart the EJS files and
-	try not to butcher the website in the process.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 29th, 2020: Reorganization</h2>
-    <p> Still working on understanding Jenkins. In an effort to explore more
-    	technologies, I'm going to move from EJS to JSX to learn a bit about
-    	React. Afterwards, the plan is to reorganize my SQL schema a bit or possibly
-    	reformat the data in the tables so it's a bit more readable. A friend once told me,
-    	"military time requires me to do math. Just stick with AM and PM."
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 22nd, 2020: Messing around with continuous integration</h2>
-    <p>I've been poking around at CI tooling. I'm trying to setup a Jenkins
-       pipeline to automatically build my Docker image, but I'm having a little trouble
-       understanding some of the documentation. Needs a bit more research and YouTube
-       video searching. On the other hand, I still need to refactor the Express requests
-       into separate functions for reusability sake. Many things to do. Fun times ahead.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 19th, 2020: Tables updated with more info</h2>
-    <p>I wonder what happened to my first certificate, but it didn't seem to go through.
-       I reissued a new certificate with Certbot and it seems to be set up correctly.
-       All my HTTP requests now automatically redirect to HTTPS as well. Got the cool
-       little lock next to my domain name. I still need to figure out how to do that
-       second table though.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 18th, 2020: Tables updated with more info</h2>
-    <p>Times and shadow sizes are up. HTTPS should also be set up soon once the certificate
-       gets validated. I still have to figure out how to get two tables up at the same time.
-       I could run two queries in one statement, but nodejs highly recommends against it as
-       it is a security risk. Hmm.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 14th, 2020: Images are up. Basic filtering also working.</h2>
-    <p>160 images all in. Had to do some formatting with the SQL names to render the images correctly.
-       At the moment, it is possible to filter to see which new bugs and fish are catchable in a month.
-       Biggest problem today: Converting the user's month input to SQL readable input then passing that
-       to the query. My solution was to create a separate module that translates the user's input then
-       returns a complete SQL statement ready to use for querying. Locations are also in. 
-       I need to add a separate table for bugs and fish that continue to spawn
-       in a new month. Times for spawns also need to be added. Table CSS needs some work (some
-       of the tables resize strangely).
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 13th, 2020: Setting up DNS and port forwarding done.</h2>
-    <p>Woo! I can connect to the EC2 instance anywhere. I still need to upload images though.</p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 12th, 2020: Got the database connected.</h2>
-    <p>Forgot to allow public IPs in the inbound rules. Whoops.</p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 9th, 2020: Got the EC2 instance set up.</h2>
-    <p>Using the Amazon Linux 2 AMI. Let's see if I can get node to see my RDS database."
-       It seems to be mad at me for some connection timeout reason. Possibly the
-       wrong password. Not sure.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 7th, 2020: Dumped the database onto RDS</h2>
-    <p>Took my local MariaDB and moved it over to RDS. Went smoother than I thought.
-       Thanks mysqldump.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 3rd, 2020: Finger workout</h2>
-    <p>I should've found a different way to insert all that data into MariaDB instead of writing hundreds of queries.
-       Oh well. My fingers probably grew some muscles. I had to find a workaround solution for bugs and fish that
-       spawn in a non-continuous timeframe. i.e. Spawns in April and October to December. I split them into two columns.
-       There's probably a better way to do this. Gotta research.
-    </p>
-  </div>
-  <div class="blog_container">
-    <h2 class="blog_title">May 1st, 2020: Animal Crossing</h2>
-    <p>My goal this month is to create a website where I can filter animal crossing data by month. I'm thinking
-       of exploring AWS while doing this project.
-    </p>
-  </div>
+  <header>
+    <div id="menu_container">
+      <ul id="menu">
+        <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
+        <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
+        <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+        <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
+        <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
+        <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="content">
+    <div class="blog_container">
+      <h2 class="blog_title">March 11th 2020: Back at it!</h2>
+      <p> It's been a while. I've been a bit busy with personal and
+          work obligations (covid vaccinations are wild), but finally
+          have some downtime again to work on some projects. I'm
+          refamiliarizing myself with the code on this project and cleaning
+          up a bit. Boy, this project is quite a hot mess, but at the same time
+          I've learned a lot from piling onto this project.
+          I cleaned up the page a bit, so it doesn't have wonky widths. I
+          sort of got the page viewable on mobile as well, but the font is
+          a bit scuffed (will fix later). I redid the active page as well:
+          instead of having the user input their timezone manually, the user
+          just presses a button and their local time will show. The manual
+          input was rather unreliable since it doesn't account for daylight
+          savings. My plans going forward are to make the website more
+          presentable. 
+      </p>
+    </div> 
+    <div class="blog_container">
+      <h2 class="blog_title">October 1st, 2020: Moving things around</h2>
+      <p> I'm moving stuff around and this blog page
+          will probably end up moving to my portfolio page.
+          The Animal Crossing project is probably going to
+          be on a different domain and I'll be keeping this
+          domain as my portfolio page.
+          <br /><br />
+          In terms of the Animal Crossing data, I've
+          been working on layouts and cleaning up the CSS.
+          Writing vanilla CSS is a lot more work than I'd imagined
+          it be, but at least I'm learning quite a fair bit. In
+          hindsight, it'd probably be best to use a framework moving
+          forward. A new feature I intend to implement next is user
+          logins. I'm thinking of a page where the user can add items
+          from the three databases into a personalized notebook of sorts.
+      </p>
+    </div> 
+    <div class="blog_container">
+      <h2 class="blog_title">September 21st, 2020: Filters</h2>
+      <p> A rough implementation of filters is up for each
+          of the pages. I've been working on brushing up
+          the CSS of the pages and it still needs a lot of
+          work. In terms of the filters, it can filter
+          every field, but for time it can only filter
+          the start and end times. I'm probably going to
+          remove that field and change it to match the
+          month filter.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">September 13th, 2020: Active page is up</h2>
+      <p> I got around to changing the active queries
+          to reflect the new changes in the SQL tables.
+          At the moment, I have them as giant template strings,
+          but might clean them up more elegantly later. Speaking
+          of template strings, I've read in the node.js/js best
+          practices it is better to concatenate strings using
+          templates rather than '+' as I have been doing. As
+          a result, I've been slowly updating my code to reflect
+          this. With the new table resolved, my next plans
+          are to add filtering via search box and expanding on
+          the frontend aspects (i.e. resizing windows doesn't
+          screw up the table/menu). In additon, I've added a changelog
+          to help me keep track of changes.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">September 9th, 2020: It's been a while.</h2>
+      <p> The sky is orange outside. First time I've
+          seen anything like it in California. Anywho,
+          my first set of interviews are done and I'm
+          back to tinkering away at this program. I've
+          been looking at Mozilla's style guide and
+          realized I haven't been using string templates.
+          I've been mostly using '+' to do my concatenation,
+          which apparently is frowned upon, so I've been cleaning
+          that up. <br /><br />
+          I found a better solution for recording the monthly spawns
+          of the various creatures of Animal Crossing. I split the spawns
+          into their own table and recorded each month as a boolean value.
+          In the querying, I would just look at the table and it allows for
+          instant access to which months something spawns in. Originally my
+          naive solution was to store spawns as a date:
+          <img src="images/blog/month_problem.jpg" alt="Problem Table" title="Problem" class="blog_image"></img>
+          This results in an obvious problem: if the year changes, I would have
+          to manually update every single entry to the next year.
+          My new solution is to have a new table with every month
+          and query months looking at this new table:
+          <img src="images/blog/new_table.jpg" alt="New Table" title="New Table" class="blog_image"></img>
+          I have a bit more cleaning up todo as well as some tweaking I need
+          to do in the active tab to reflect these new table changes.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">August 5th, 2020: Cleaning Up</h2>
+      <p> These past few weeks I've been working on a bit of
+          interview practice, so I haven't had much time to add
+          features. For the most part, I've just been cleaning up
+          my tests and code. The certbot certificate also expires soon,
+          so I should probably get around to renewing that too. In terms
+          of learning Go, I've been working through the tutorial and it's
+          pretty enjoyable. I like how the tutorial goes in-depth about
+          design choices in the language. More updates to come soon to this
+          page.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">July 22nd, 2020: Deep Dive</h2>
+      <p> Fireworks have finally stopped.
+          Sea Creatures have been added to the database.
+          I also found a bug while reorganizing some of
+          my code. Due to the way my SQL schema records
+          date ranges, if certain things appeared in 2021,
+          then they wouldn't show up at all on the webpage.
+          It's possible I might have to change the way that
+          data is represented on the SQL table. Instead of having
+          "2020-05-01" to "2020-06-30" for example, I might have
+          to record true/false booleans for all the months that
+          the creatures show up. For now, I have a simple workaround
+          that checks for both 2020 and 2021. <br /><br /> 
+          As a side note, I've been working through the Golang tutorial.
+          It uses some interesting conventions like short variable declaration (:=)
+          and also the way they handle type declarations. The type always comes after
+          the variable in Go. As stated from the docs, the type is declared after the
+          variable for readability's sake. For example, you can always identify the
+          name and return types for a function no matter how nested it becomes.
+          See <a href='https://blog.golang.org/declaration-syntax'>declaration syntax</a>.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">July 13th, 2020: Time zones</h2>
+      <p> Fireworks are still going strong at night.
+          At long last, the active page has been fixed. It
+          seems the three conditionals I added to the SQL
+          (see last blog post) query accounts for all situations
+          that was causing data to be missing from the cells.
+          In addition, you can now filter by timezones! It was fairly
+          straightforward to implement since it builds upon my
+          military time converter. I would have the user select their time
+          zone and add on whatever UTC value they chose to the current
+          UTC+0 time. i.e. If the user chose UTC-7, then the program takes
+          the current time, subtracts it by 7, then builds the query.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">July 8th, 2020: Surely you Jest</h2>
+      <p> The fireworks haven't stopped since July 4th.
+        One of my neighbors seems to have stockpiled
+        a decades worth of them and he goes at it every night.
+        Anywho, I've been dabbling with testing libraries like
+        Jest and Selenium and they're pretty friendly to use.
+        Selenium took a while to wrap my head around since
+        you have to build the driver first and use await calls
+        to wait for the driver to pull info from the page you're
+        testing. I just have a basic test for the bugs page right
+        now, but will expand it as I go. <br /><br />
+        In terms of functionality, I started working on
+        the timezone converter; however, there's an unresolved bug I have to
+        resolve first: if the current time falls between a certain range (11 PM
+        to 5 AM), then my SQL queries don't properly handle the day
+        change. As a result, the only data that shows up are the bugs/fish
+        that are available all day. My current query doesn't account for changes
+        in a new day, so it gets confused when I say 'SELECT * FROM 'bugs' WHERE
+        currentTime IS BETWEEN start_time AND end_time'. One workaround I think
+        might work is to a negation so not between the two times. Another solution
+        could be to set 3 conditionals:
+       </p>
+        <ol>
+          <li>start < end AND currentTime BETWEEN start and end (the original query)</li>
+          <li>end < start AND currentTime < start AND currentTime < end (covers day changes)</li>
+          <li>end < start AND currentTime > start (covers period between 11 PM and midnight)</li>
+        </ol>
+      <p>
+        I'll play with both ideas tomorrow and see where that takes me.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">July 1st, 2020: Cleaning Up & Looking Into Testing</h2>
+      <p> Happy July! I cleaned up some of the code into separate
+          helper functions. In addition, months are now visible on
+          the tables as well. I merged the shadow size column with
+          the location column for fish to keep the table size consistent
+          with the bugs table. Adjusting the CSS and resizing the tables
+          fixed the bug where some tables would show up smaller. I've
+          been looking at some <a href="https://github.com/goldbergyoni/nodebestpractices">
+          node best practices</a> and I have to say I have a lot of work
+          to do. In particular, testing has been rather lacking in this
+          project and in hindsight, I should have designed them as I
+          was building the program. I've been looking into Jest and Selenium
+          to do some basic tests to start off.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">June 26th, 2020: Time Complexities</h2>
+      <p> I refactored some of the code for reusability
+          sake. The conversion of 24 hour time to 12 hour
+          time was copied and pasted in every route call, so
+          I cleaned it up into a separate function. I readjusted
+          the times in the active categories as well as there was
+          an error in how I wrote my SQL query. The statement
+          was supposed to check times between the starting time
+          and the ending time, but instead it was written as
+          check times less than the starting time and less than
+          the end time. My oversight is not looking into testing earlier.
+          Manually looking at the data to see if it's correct is fairly
+          ineffective. There's another bug I suspect will arise from this
+          correction. For example, say a certain fish is only active from
+          11 pm (23:00) to 8 am. The current time is 23:15:00, so it passes
+          the inequality for being greater than the start time of 11 pm. However,
+          when it goes to check if it's less than the end time, the inequality fails
+          since 23:15 is technically greater than 8 AM. A fix might be to combine the
+          times and date into a datetime element. Also, this is a good time to
+          look into testing tools in npm.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">June 22nd, 2020: Active Bugs & Fish</h2>
+      <p> After fiddling with uncooperative SQL queries,
+      	I was able to create a table showing the currently
+          active fishes and bugs. It currently uses UTC timezone
+          as a result of the Date.now() functionality of Javascript,
+          but I'm thinking of adding a timezone option for the user.
+          The git repo is also available for viewing as well.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">June 19th, 2020: Refactoring</h2>
+      <p> I've been exporting code bits into their own modules
+      	for organization purposes. The API requests code needs
+          a bit of refactoring as well. The times have been
+          "demilitarized" and switched to AM/PM format. It
+          wasn't too bad of a fix. I just had to subtract 12
+          from the database query if the time exceeded 12 and stick
+          a PM in front of it. New filters are coming soon.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">June 16th, 2020: Unnecessary complexity</h2>
+      <p> After doing some experimentation and research with React,
+      	I feel like I'm making the application needlessly complicated
+          for the sake of including more technologies. Unless I plan to
+          make an API out of my database that works with CRUD (create,
+          read, update, and delete), I feel as if EJS is enough for the
+          time being. If anything, I should split this blog with the data
+          website and change this into a React App. Regardless, I learned
+          quite a bit about React. It's pretty neat how you can just package
+          all of your HTML into reusuable components. In regards to this website,
+          I still need to adjust the CSS on the tables. All the tables
+          display properly with correct page sizing, but the Dab (October Fish)
+          is strangely offset.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">June 11th, 2020: Back at it</h2>
+      <p> Due to some work obligations, I've been away for a bit.
+      	Doing some research for the moment learning basic React.
+          Tomorrow, I'll start breaking apart the EJS files and
+          try not to butcher the website in the process.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 29th, 2020: Reorganization</h2>
+      <p> Still working on understanding Jenkins. In an effort to explore more
+      	technologies, I'm going to move from EJS to JSX to learn a bit about
+      	React. Afterwards, the plan is to reorganize my SQL schema a bit or possibly
+      	reformat the data in the tables so it's a bit more readable. A friend once told me,
+      	"military time requires me to do math. Just stick with AM and PM."
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 22nd, 2020: Messing around with continuous integration</h2>
+      <p>I've been poking around at CI tooling. I'm trying to setup a Jenkins
+         pipeline to automatically build my Docker image, but I'm having a little trouble
+         understanding some of the documentation. Needs a bit more research and YouTube
+         video searching. On the other hand, I still need to refactor the Express requests
+         into separate functions for reusability sake. Many things to do. Fun times ahead.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 19th, 2020: Tables updated with more info</h2>
+      <p>I wonder what happened to my first certificate, but it didn't seem to go through.
+         I reissued a new certificate with Certbot and it seems to be set up correctly.
+         All my HTTP requests now automatically redirect to HTTPS as well. Got the cool
+         little lock next to my domain name. I still need to figure out how to do that
+         second table though.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 18th, 2020: Tables updated with more info</h2>
+      <p>Times and shadow sizes are up. HTTPS should also be set up soon once the certificate
+         gets validated. I still have to figure out how to get two tables up at the same time.
+         I could run two queries in one statement, but nodejs highly recommends against it as
+         it is a security risk. Hmm.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 14th, 2020: Images are up. Basic filtering also working.</h2>
+      <p>160 images all in. Had to do some formatting with the SQL names to render the images correctly.
+         At the moment, it is possible to filter to see which new bugs and fish are catchable in a month.
+         Biggest problem today: Converting the user's month input to SQL readable input then passing that
+         to the query. My solution was to create a separate module that translates the user's input then
+         returns a complete SQL statement ready to use for querying. Locations are also in. 
+         I need to add a separate table for bugs and fish that continue to spawn
+         in a new month. Times for spawns also need to be added. Table CSS needs some work (some
+         of the tables resize strangely).
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 13th, 2020: Setting up DNS and port forwarding done.</h2>
+      <p>Woo! I can connect to the EC2 instance anywhere. I still need to upload images though.</p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 12th, 2020: Got the database connected.</h2>
+      <p>Forgot to allow public IPs in the inbound rules. Whoops.</p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 9th, 2020: Got the EC2 instance set up.</h2>
+      <p>Using the Amazon Linux 2 AMI. Let's see if I can get node to see my RDS database."
+         It seems to be mad at me for some connection timeout reason. Possibly the
+         wrong password. Not sure.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 7th, 2020: Dumped the database onto RDS</h2>
+      <p>Took my local MariaDB and moved it over to RDS. Went smoother than I thought.
+         Thanks mysqldump.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 3rd, 2020: Finger workout</h2>
+      <p>I should've found a different way to insert all that data into MariaDB instead of writing hundreds of queries.
+         Oh well. My fingers probably grew some muscles. I had to find a workaround solution for bugs and fish that
+         spawn in a non-continuous timeframe. i.e. Spawns in April and October to December. I split them into two columns.
+         There's probably a better way to do this. Gotta research.
+      </p>
+    </div>
+    <div class="blog_container">
+      <h2 class="blog_title">May 1st, 2020: Animal Crossing</h2>
+      <p>My goal this month is to create a website where I can filter animal crossing data by month. I'm thinking
+         of exploring AWS while doing this project.
+      </p>
+    </div>
+  </main>
 </body>
 </html>
