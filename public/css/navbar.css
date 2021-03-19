@@ -1,36 +1,43 @@
-#menu_container {
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+#navbar {
 	width: 100%;
 }
 
-#menu {
+.menu_container {
+	background-color: #003366;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.menu {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 0;
+	padding: 0;
 }
 
 .menu_button {
 	display: inline-block;
 	list-style-type: none;
+	margin: 0 0.5em;
 	padding: 0.5em;
-	margin: 0.25em;
 }
 
 .menu_button:hover {
-	background-color: #26E9D6;
+	background-color: gray;
 }
 
 .menu_link {
+	line-height: 2;
 	text-decoration: none;
-	color: #000000;
+	color: #FFFFFF;
+	font-weight: bold;
 }
 
 #octocat {
 	max-width: 80px;
 	max-height: 66px;
-}
-
-@media only screen and (max-width: 620px) {
-	#menu_container {
-		margin: 0 50%;
-	}
 }

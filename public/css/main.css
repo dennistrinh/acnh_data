@@ -1,0 +1,16 @@
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+
+body {
+	font: 20px 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
+	color: #FFF;
+	margin: 0;
+	background-color: #1A202C;
+}
+
+@media only screen and (max-width: 620px) {
+	body {
+		font-size: 1.5em;
+	}
+}

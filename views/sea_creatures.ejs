@@ -7,86 +7,92 @@
   <title>Animal Crossing New Horizons Sea Creatures</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/css/navbar.css" type="text/css">
   <link rel="stylesheet" href="/css/tables.css" type="text/css">
   <script type="text/javascript" src="/func/sortRows.js"></script>
   <script type="text/javascript" src="func/tableFilter.js"></script>
 </head>
 <body>
-  <div class="menu_container">
-    <ul class="menu">
-      <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
-      <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
-      <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-      <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
-      <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-      <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
-    </ul>
-  </div>
-  <div class="menu_container">
-    <form method="POST">
-      <label for="months" class="month_label">Month</label>
-      <select name="month" class="month_select">
-        <option value="January">January</option>
-	<option value="February">February</option>
-	<option value="March">March</option>
-	<option value="April">April</option>
-	<option value="May">May</option>
-	<option value="June">June</option>
-	<option value="July">July</option>
-	<option value="August">August</option>
-	<option value="September">September</option>
-	<option value="October">October</option>
-	<option value="November">November</option>
-	<option value="December">December</option>
+  <header id="navbar">
+    <div class="menu_container">
+      <ul class="menu">
+        <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
+        <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
+        <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
+        <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
+        <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
+        <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="content">
+    <div class="month_input">
+      <form method="post">
+        <label for="months" class="month_label">Month</label>
+        <select name="month" class="month_select">
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+        <input class="month_submit" type="submit" value="Search!" formaction="/sea">
+      </form>
+    </div>
+    <div class="filter_input">
+      <label id="filter" for"userInput" class="month_label">Filters</label>
+      <select id="option" class="month_select">
+        <option value=0>Name</option>
+        <option value=2>Shadow</option>
+        <option value=4>Time Found</option>
+        <option value=5>Price</option>
       </select>
-      <input class="month_submit" type="submit" value="Filter" formaction="/sea">
-    </form>
-  </div>
-  <div class="menu_container">
-    <select id="option" class="month_select">
-      <option value=0>Name</option>
-      <option value=2>Shadow</option>
-      <option value=4>Time Found</option>
-      <option value=5>Price</option>
-    </select>
-    <input type="text" id="userInput" placeholder="Search using filter above!" onkeyup="tableFilter('sea_creatures')"> 
-  </div>
-  <div class="table_container">
-    <h1 class="table_headers">All Sea Creatures in Animal Crossing New Horizons</h1>
-    <table id="sea_creatures">
-      <tr>
-        <th onclick="sortRows('sea_creatures', 0)">Name</th>
-        <th onclick="sortRows('sea_creatures', 1)">Image</th>
-        <th onclick="sortRows('sea_creatures', 2)">Shadow [Swim Speed]</th>
-        <th onclick="sortRows('sea_creatures', 3)">Months Available</th>
-        <th onclick="sortRows('sea_creatures', 4)">Time Found</th>
-        <th onclick="sortRows('sea_creatures', 5)">Price</th>
-      </tr>
-      <%- include("./functions/renderImages") %>
-      <% for (let i = 0; i < data.length; i++) { %>
-      <tr>
-        <td><%= data[i].name %></td>
-        <td><img src="/images/sea/<%= renderImages(data[i].name) %>" /></td>
-        <td><%= data[i].shadow_size %> [<%= data[i].swim_speed %>]</td>
-        <% if (data[i].start_month_1 && data[i].start_month_2) { %>
-        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
-        <% } else if (data[i].start_month_1) { %>
-        <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %>
-        <% } else { %>
-        <td>All Year</td>
+      <input type="text" class="user_input" id="userInput" placeholder="Search using filter above!" onkeyup="tableFilter('sea_creatures')"> 
+    </div>
+    <div class="table_container">
+      <h1 class="table_headers">All Sea Creatures in Animal Crossing New Horizons</h1>
+      <table id="sea_creatures">
+        <tr>
+          <th onclick="sortRows('sea_creatures', 0)">Name</th>
+          <th onclick="sortRows('sea_creatures', 1)">Image</th>
+          <th onclick="sortRows('sea_creatures', 2)">Shadow [Swim Speed]</th>
+          <th onclick="sortRows('sea_creatures', 3)">Months Available</th>
+          <th onclick="sortRows('sea_creatures', 4)">Time Found</th>
+          <th onclick="sortRows('sea_creatures', 5)">Price</th>
+        </tr>
+        <%- include("./functions/renderImages") %>
+        <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].name %></td>
+          <td><img src="/images/sea/<%= renderImages(data[i].name) %>" /></td>
+          <td><%= data[i].shadow_size %> [<%= data[i].swim_speed %>]</td>
+          <% if (data[i].start_month_1 && data[i].start_month_2) { %>
+          <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %><br><%= data[i].start_month_2 %> - <%= data[i].end_month_2 %></td>
+          <% } else if (data[i].start_month_1) { %>
+          <td><%= data[i].start_month_1 %> - <%= data[i].end_month_1 %>
+          <% } else { %>
+          <td>All Year</td>
+          <% } %>
+          <% if (data[i].start_time_1 && data[i].start_time_2) { %>
+          <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
+          <% } else if (data[i].start_time_1) { %>
+          <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
+          <% } else { %>
+          <td>All Day</td>
+          <% } %>
+          <td><%= data[i].price %></td>
+        </tr>
         <% } %>
-        <% if (data[i].start_time_1 && data[i].start_time_2) { %>
-        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %><br><%= data[i].start_time_2 %> - <%= data[i].end_time_2 %></td>
-        <% } else if (data[i].start_time_1) { %>
-        <td><%= data[i].start_time_1 %> - <%= data[i].end_time_1 %>
-        <% } else { %>
-        <td>All Day</td>
-        <% } %>
-        <td><%= data[i].price %></td>
-      </tr>
-      <% } %>
-    </table>
-  </div>
+      </table>
+    </div>
+  </main>
 </body>
 </html>

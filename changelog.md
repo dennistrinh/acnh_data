@@ -1,3 +1,8 @@
+## 1.3.1
+---
+- Dark mode activated (colors not final)
+- Major CSS cleanup, added headers/main tags to html
+- CSS files split into appropriate files (no more mega styles file)
 ## 1.3.0
 ---
 - Active page now only does local time or GMT rather than timezone conversion

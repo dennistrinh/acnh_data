@@ -1,3 +1,12 @@
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+
+body {
+	font: 20px 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+
 .blog_container {
 	width: 35%;
 	margin: 0 auto;
@@ -5,7 +14,6 @@
 }
 
 .blog_title {
-	font-size: 35px;
 	text-align: center;
 }
 
@@ -17,27 +25,19 @@ ol {
 .blog_image {
 	display: block;
 	margin: 10px auto 15px auto;
-	max-width: 100%;
-	height: auto;
-}
-
-.blog_image:hover {
-	transform: scale(1.5);
 }
 
 @media only screen and (max-width: 620px) {
+	body {
+		font-size: 1.5em;
+	}
+
 	.blog_container {
 		width: 150%;
 		margin: 0 22.5%;
 	}	
 
-	.blog_image:hover {
-		transform: scale(1.25);
-	}
-	
-	.menu_container {
-		width: 200%;
-		margin: 0;
-		padding: 0;
+	.blog_image {
+		width: 100%;
 	}
 }
