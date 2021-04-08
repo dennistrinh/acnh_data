@@ -25,6 +25,15 @@ ol {
 	transform: scale(1.5);
 }
 
+a {
+	color: #fff;
+	transition: color 0.2s;
+}
+
+a:hover {
+	color: #76ff5f;
+}
+
 @media only screen and (max-width: 620px) {
 	.blog_container {
 		width: 150%;

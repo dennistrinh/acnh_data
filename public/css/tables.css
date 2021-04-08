@@ -1,5 +1,6 @@
 table {
-	border-style: solid;
+	border-style: thin;
+	border-collapse: collapse;
 	margin-left: 10%;
 	margin-right: 10%;
 }
@@ -12,6 +13,7 @@ th, td {
 
 th {
 	cursor: pointer;
+	padding: 12px 15px;
 }
 
 ol {
@@ -27,20 +29,21 @@ ol {
 }
 
 .filter_input {
+	font-family: inherit;
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
-	
 }
 
 .month_select, .month_label {
+	font-family: inherit;
 	padding: 0.5em;
 	margin: 0.25em;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 .month_submit {
-        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-family: inherit;
 	font-weight: 700;
 	border-radius: 0.1em;
 	padding: 0.5em 1.25em;
@@ -71,6 +74,7 @@ ol {
 }
 
 .user_input {
+	font-family: inherit;
 	padding: 0.5em;
 	margin: 0.25em;
 	width: 25%;
@@ -89,11 +93,28 @@ ol {
 	background-color: rgba(0,0,0,0);
 }
 
-.timezone_submit:hover {
+.search_submit, .timezone_submit:hover {
 	color: #000000;
 	background-color: #FFFFFF;
 	cursor: pointer;
 }
+
+.test:before {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+}
+
+.test:after {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid transparent;
+}
+
 @media only screen and (max-width: 620px) {
 	.table_container, .menu_container,
 	.month_input, .filter_input, 

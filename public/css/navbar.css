@@ -24,10 +24,11 @@
 	list-style-type: none;
 	margin: 0 0.5em;
 	padding: 0.5em;
+	transition: background-color 0.2s;
 }
 
 .menu_button:hover {
-	background-color: gray;
+	background-color: #91a0bb;
 }
 
 .menu_link {
