@@ -22,23 +22,34 @@
 .menu_button {
 	display: inline-block;
 	list-style-type: none;
-	margin: 0 0.5em;
-	padding: 0.5em;
-	transition: background-color 0.2s;
-}
-
-.menu_button:hover {
-	background-color: #91a0bb;
+	margin: 0.5em 0.5em;
+	padding: 0.25em 0.5em;
+	text-align: center;
+	line-height: 2;
 }
 
 .menu_link {
-	line-height: 2;
 	text-decoration: none;
 	color: #FFFFFF;
 	font-weight: bold;
 }
 
-#octocat {
-	max-width: 80px;
-	max-height: 66px;
+.menu_link:hover {
+	filter: brightness(0) saturate(100%) invert(81%) sepia(14%) saturate(1298%) hue-rotate(79deg) brightness(97%) contrast(90%);
 }
+
+.menu_icon {
+	position: relative;
+	top: 10px;
+	right: 5px;
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(100%) contrast(100%);
+        width: 40px;
+	height: 40px;
+}
+
+@media only screen and (max-width: 620px) {
+	.menu_icon {
+		display: none;
+	}
+}
+

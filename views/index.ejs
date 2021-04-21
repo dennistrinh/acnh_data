@@ -15,16 +15,80 @@
   <header id="navbar">
     <div class="menu_container">
       <ul class="menu">
-        <li class="menu_button"><a href="./" class="menu_link">Home</a></li>
-        <li class="menu_button"><a href="./bugs" class="menu_link">Bugs</a></li>
-        <li class="menu_button"><a href="./fish" class="menu_link">Fish</a></li>
-        <li class="menu_button"><a href="./sea" class="menu_link">Sea Creatures</a></li>
-        <li class="menu_button"><a href="./active" class="menu_link">Active This Month</a></li>
-        <li class="menu_button"><a href="./github" class="menu_link"><img src="images/octocat.png" id="octocat" title="github"></a></li>
+        <li class="menu_button">
+          <a href="./" class="menu_link">
+            <img class="menu_icon" src="/images/icons/home.svg" alt="Home" title="Home">
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="menu_button">
+	  <a href="./bugs" class="menu_link">
+            <img class="menu_icon" src="/images/icons/bug.svg" alt="bug" title="Bugs">
+	    <span>Bugs</span>
+          </a>
+	</li>
+        <li class="menu_button">
+	  <a href="./fish" class="menu_link">
+	    <img class="menu_icon" src="/images/icons/fish.svg" alt="fish" title="Fish">
+	    <span>Fish</span>
+          </a>
+	</li>
+        <li class="menu_button">
+	  <a href="./sea" class="menu_link">
+            <img class="menu_icon" src="/images/icons/sea.svg" alt="docker_whale" title="Sea Creatures">
+	    <span>Sea Creatures</span>
+          </a>
+	</li>
+        <li class="menu_button">
+	  <a href="./active" class="menu_link">
+	    <img class="menu_icon" src="/images/icons/active.svg" alt="hourglass" title="Active">
+	    <span>Active This Month</span>
+          </a>
+	</li>
+        <li class="menu_button">
+	  <a href="./github" class="menu_link">
+	    <img class="menu_icon" src="images/icons/github.svg" alt="octocat" title="Github">
+	    <span>Github</span>
+	  </a>
+	</li>
       </ul>
     </div>
   </header>
   <main id="content">
+    <div class="blog_container">
+      <h2 class="blog_title">April 20th 2021: Icons! </h2>
+      <p> I've added icons for the navigation menu. It was trickier
+          than I thought to vertically align the icons with the text.
+	  Since the icons are slightly larger than the font size, you
+	  get the icon slightly floating above the text. I used position
+          relative to maneuver the icon a bit downwards, but this is highly
+          mobile unfriendly. For the time being, I've hidden the icons on mobile,
+          but I'll mess around with it over the weekend. There's this cool
+          <a class="blog_link" href="https://codepen.io/sosuke/pen/Pjoqqp">program</a>
+          that someone wrote that transforms the color of images to whatever you want.
+	  It gives you a filter rule you can use in your CSS file. As a result of
+          adding icons, the octocat image for the menu button has been stashed.
+	  I'll keep the picture here though for nostalgia.
+          <img src="images/octocat.png" class="blog_image" id="octocat" alt="octocat" title="Original Menu Button">
+      </p>
+    </div> 
+    <div class="blog_container">
+      <h2 class="blog_title">April 15th 2021: Refactoring Day</h2>
+      <p> I sat down in a restaurant to eat today for the first time
+	  in a long time with a co-worker. It still felt surreal
+	  having my mask off in public, sitting down at a restaurant, and
+	  eating some spicy Korean tofu soup in a somewhat busy restaurant.
+	  Slowly but surely we'll have some sense of normalcy again,
+	  but then again I doubt we'll ever truly return to pre-covid times.
+	  With California opening up vaccines to the general public, the clinic
+	  I work at is probably going to be wild pretty soon. As for good ole'
+	  Animal Crossing, I've refactored the CSS to make it more accessible.
+	  Navigating through this giant wall of CSS gets harder by the day,
+	  so I've tried to rearrange the code following a structure.
+	  i.e. All the table related code is in it's own file and only deals with
+	  tables. In addition, related code is grouped closer together.
+      </p>
+    </div> 
     <div class="blog_container">
       <h2 class="blog_title">April 7th 2021: Corned Cream?</h2>
       <p> I met up with an old high school friend today for some ice
@@ -149,12 +213,12 @@
           In the querying, I would just look at the table and it allows for
           instant access to which months something spawns in. Originally my
           naive solution was to store spawns as a date:
-          <img src="images/blog/month_problem.jpg" alt="Problem Table" title="Problem" class="blog_image"></img>
+          <img src="images/blog/month_problem.jpg" alt="Problem Table" title="Problem" class="blog_image">
           This results in an obvious problem: if the year changes, I would have
           to manually update every single entry to the next year.
           My new solution is to have a new table with every month
           and query months looking at this new table:
-          <img src="images/blog/new_table.jpg" alt="New Table" title="New Table" class="blog_image"></img>
+          <img src="images/blog/new_table.jpg" alt="New Table" title="New Table" class="blog_image">
           I have a bit more cleaning up todo as well as some tweaking I need
           to do in the active tab to reflect these new table changes.
       </p>
@@ -192,7 +256,7 @@
           the variable in Go. As stated from the docs, the type is declared after the
           variable for readability's sake. For example, you can always identify the
           name and return types for a function no matter how nested it becomes.
-          See <a href='https://blog.golang.org/declaration-syntax'>declaration syntax</a>.
+          See <a class="blog_link" href='https://blog.golang.org/declaration-syntax'>declaration syntax</a>.
       </p>
     </div>
     <div class="blog_container">
@@ -250,7 +314,7 @@
           the location column for fish to keep the table size consistent
           with the bugs table. Adjusting the CSS and resizing the tables
           fixed the bug where some tables would show up smaller. I've
-          been looking at some <a href="https://github.com/goldbergyoni/nodebestpractices">
+          been looking at some <a class="blog_link" href="https://github.com/goldbergyoni/nodebestpractices">
           node best practices</a> and I have to say I have a lot of work
           to do. In particular, testing has been rather lacking in this
           project and in hindsight, I should have designed them as I

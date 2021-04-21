@@ -1,3 +1,7 @@
+## 1.4.0
+---
+- Icons added, navigation bar re-designed
+- Buttons customized and resized
 ## 1.3.1
 ---
 - Dark mode activated (colors not final)

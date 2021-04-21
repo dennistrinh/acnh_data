@@ -99,22 +99,6 @@ ol {
 	cursor: pointer;
 }
 
-.test:before {
-	width: 0;
-	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-bottom: 5px solid transparent;
-}
-
-.test:after {
-	width: 0;
-	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid transparent;
-}
-
 @media only screen and (max-width: 620px) {
 	.table_container, .menu_container,
 	.month_input, .filter_input, 

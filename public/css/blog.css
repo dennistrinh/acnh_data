@@ -16,7 +16,7 @@ ol {
 
 .blog_image {
 	display: block;
-	margin: 10px auto 15px auto;
+	margin: 15px auto 15px auto;
 	max-width: 100%;
 	height: auto;
 }
@@ -25,13 +25,19 @@ ol {
 	transform: scale(1.5);
 }
 
-a {
+.blog_link {
 	color: #fff;
 	transition: color 0.2s;
 }
 
-a:hover {
+.blog_link:hover {
 	color: #76ff5f;
+}
+
+#octocat {
+	background-color: white;
+	max-height: 15%;
+	max-width: 15%;
 }
 
 @media only screen and (max-width: 620px) {
