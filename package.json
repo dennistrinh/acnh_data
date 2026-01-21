@@ -11,7 +11,7 @@
     "mariadb": "^2.5.3"
   },
   "devDependencies": {
-    "chromedriver": "^89.0.0",
+    "chromedriver": "^143.0.4",
     "geckodriver": "^6.1.0",
     "jest": "^30.2.0",
     "selenium-webdriver": "^4.0.0-beta.1"
